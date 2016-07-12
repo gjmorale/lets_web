@@ -1,0 +1,21 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.4.5
+  app:
+    build: .
+    # sources environment variable configuration for our app
+    # env_file: .env
+
+    environment:
+      DB_ADAPTER: postgresql
+      DB_HOST: db
+      POSTGRES_PASSWORD:
+
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - ./lets/.:/var/lets
+    ports:
+      - "3000:3000"
+    links:
+      - db
