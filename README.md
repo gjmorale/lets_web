@@ -1,9 +1,11 @@
-# Ruby on Rails Tutorial sample application
+# LET'S Web Application
 
-This is the sample application for
-[*Ruby on Rails Tutorial:
+This is the sample application for the LET'S WebApp based on tutorials from
+- [*Ruby on Rails Tutorial:
 Learn Web Development with Rails*](http://www.railstutorial.org/)
 by [Michael Hartl](http://www.michaelhartl.com/).
+- [*Existing Rails app to Docker*](http://chrisstump.online/2016/02/20/docker-existing-rails-application/).
+- [*Docker compose rails tutorial*](https://docs.docker.com/compose/rails/).
 
 ## Getting started
 
