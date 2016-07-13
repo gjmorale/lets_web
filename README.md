@@ -9,29 +9,22 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 
 ## Getting started
 
-To get started with the app, clone the repo and then install the needed gems:
+First install Docker Engine and Docker Compose
+
+Then, clone the repo and build the necesary images in the root directory with:
 
 ```
-$ bundle install --without production
+$ sudo docker-compose build
 ```
 
-Next, migrate the database:
+Then, start the containers with:
 
 ```
-$ rails db:migrate
+$ sudo docker-compose up
 ```
 
-Finally, run the test suite to verify that everything is working correctly:
+Next, create the postgres database:
 
 ```
-$ rails test
+$ sudo docker-compose run app rake db:create
 ```
-
-If the test suite passes, you'll be ready to run the app in a local server:
-
-```
-$ rails server
-```
-
-For more information, see the
-[*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
