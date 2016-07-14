@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'static_pages/landing'
+  root 'static_pages#landing'
 
   get 'static_pages/about'
 

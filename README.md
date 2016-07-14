@@ -28,3 +28,11 @@ Next, create the postgres database:
 ```
 $ sudo docker-compose run app rake db:create
 ```
+
+For possible troubles with postgres gems do:
+
+```
+$ sudo apt-get install libpq-dev
+$ sudo gem install pg
+$ bundle update
+```
