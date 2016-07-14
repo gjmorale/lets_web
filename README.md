@@ -36,3 +36,9 @@ $ sudo apt-get install libpq-dev
 $ sudo gem install pg
 $ bundle update
 ```
+
+Run commands to the server as:
+
+```
+$ sudo docker-compose run app $COMMAND
+```
