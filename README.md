@@ -42,3 +42,6 @@ Run commands to the server as:
 ```
 $ sudo docker-compose run app $COMMAND
 ```
+
+## GEMS:
+- [Rut Validator](https://github.com/Phifo/rut_validation)
