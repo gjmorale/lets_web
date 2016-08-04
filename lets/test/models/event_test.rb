@@ -20,9 +20,9 @@ class EventTest < ActiveSupport::TestCase
   	assert_not @event.valid?, "Can't be shorter than 5 characters"
   	@event.name = "1-2_3 & 4 5 (6)" 
   	assert @event.valid?, "Can contain - _ & ! () and whitespaces letters and numbers"
-	@event.name = '@%$#!°|'
+	  @event.name = '@%$#!°|'
   	assert_not @event.valid?, "Can't contain any other character"
-	@event.name = "Jhonn  Red"
+	  @event.name = "Jhonn  Red"
   	assert_not @event.valid?, "Can't contain consecutive white spaces"
   end
 
@@ -31,8 +31,10 @@ class EventTest < ActiveSupport::TestCase
   	assert_not @event.valid?, "Can't be blank"
   	@event.description = "a"*251
   	assert_not @event.valid?, "Can't be longer than 250 characters"
-  	@event.description = "b"*9
-  	assert_not @event.valid?, "Can't be shorter than 10 characters"
+    @event.description = "b"*9
+    assert_not @event.valid?, "Can't be shorter than 10 characters"
+    @event.description = "bkjnsdjvnskvnslnflanflkanflkn qkefnajknfsnfna kefjnakjf.1803rjj,sfn.mer.2388"
+    assert @event.valid?, "Valid descriptions must be accepted"
   end
 
   test "capacity should be valid" do
