@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803152337) do
+ActiveRecord::Schema.define(version: 20160804200347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20160803152337) do
     t.integer  "max_age"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "open_date"
+    t.datetime "close_date"
   end
 
   create_table "producers", force: :cascade do |t|

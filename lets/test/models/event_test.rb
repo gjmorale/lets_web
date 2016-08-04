@@ -3,7 +3,7 @@ require 'test_helper'
 class EventTest < ActiveSupport::TestCase
   def setup
   	@producer = Producer.new(name: "The big company LTDA.", fantasy_name: "Friends! Co.", social_id: "17.700.955-5")
-  	@event = Event.new(name: "First Event", description: "This is the first event of it's kind", capacity: 500, min_age: 18, max_age: 25)
+  	@event = Event.new(name: "First Event", description: "This is the first event of it's kind", capacity: 500, min_age: 18, max_age: 25, open_date: DateTime.parse("2016-11-25 10:10:10"), close_date: DateTime.parse("2016-11-25 16:10:10"))
   end
 
   test "should be valid" do
@@ -68,6 +68,20 @@ class EventTest < ActiveSupport::TestCase
   	assert_not @event.valid?, "Maximum age can't be negative"
   	@event.max_age = 20
   	assert @event.valid?, "Valid maximum age must be accepted"
+  end
+
+  test "open_date should be valid" do 
+    @event.open_date = nil
+    assert_not @event.valid?, "Null is not a valid opening date" 
+    @event.open_date = 1.week.from_now
+    assert @event.valid?, "Valid opening dates must be accepted"
+  end
+
+  test "close_date should be valid" do 
+    @event.close_date = nil
+    assert_not @event.valid?, "Null is not a valid closing date" 
+    @event.close_date = 1.week.from_now
+    assert @event.valid?, "Valid closing dates must be accepted"
   end
 
 end
