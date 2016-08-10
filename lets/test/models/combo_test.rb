@@ -15,6 +15,10 @@ class ComboTest < ActiveSupport::TestCase
 		)
   end
 
+  test "should be valid" do
+  	assert @combo.valid?	
+  end
+
   test "name should be valid" do
   	@combo.name = "       "
   	assert_not @combo.valid?, "Name can't be blank"
@@ -95,8 +99,10 @@ class ComboTest < ActiveSupport::TestCase
   test "stock should be valid" do 
   	@combo.stock = nil
   	assert_not @combo.valid?, "Stock can't be null"
-  	@combo.stock = 0
-  	assert_not @combo.valid?, "Stock can't be 0"
+    @combo.stock = 0
+    assert_not @combo.valid?, "Stock can't be 0"
+    @combo.stock = -1
+    assert_not @combo.valid?, "Stock can't be negative"
   	@combo.stock = 1000001
   	assert_not @combo.valid?, "Stock can't be grater than 1.000.000"
   	@combo.stock = 10000

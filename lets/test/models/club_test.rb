@@ -5,6 +5,10 @@ class ClubTest < ActiveSupport::TestCase
   	@club = Club.new(name: "La Disco!", address: "Av. Siempre viva 123", capacity: 600)
   end
 
+  test "should be valid" do
+  	assert @club.valid?	
+  end
+
   test "address should be valid" do
   	@club.address = "       "
   	assert_not @club.valid?, "Address can't be blank"
