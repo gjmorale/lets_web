@@ -57,9 +57,11 @@ class UserTest < ActiveSupport::TestCase
   	assert_not @user.valid?, "Can't be anything else"
   end
 
-  test "rut should be valid" do
-  	@user.social_id = "      "
-  	assert_not @user.valid?, "Rut can't be blank"
+  test "social_id should be valid" do
+    @user.social_id = nil
+    assert_not @user.valid?, "Rut can't be nil"
+    @user.social_id = "      "
+    assert_not @user.valid?, "Rut can't be blank"
   	@user.social_id = "17.700.800-1"
   	assert @user.valid?, "Verifying digit must be valid"
   	@user.social_id = "17700955-5"
@@ -68,6 +70,12 @@ class UserTest < ActiveSupport::TestCase
   	assert_not @user.valid?, "Invalid verifying digits must be invalid"
   	@user.social_id = "1a78j93@-5"
   	assert_not @user.valid?, "Invalid characters must be invalid"
+  end
+
+  test "social_id should be unique" do
+    duplicate_user = @user.dup
+    @user.save
+    assert_not duplicate_user.valid?, "Social_id should be unique"
   end
 
 end
