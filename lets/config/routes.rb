@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :accounts
+
 	root 'static_pages#landing'
 
   get 'static_pages/landing'
