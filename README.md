@@ -43,5 +43,11 @@ Run commands to the server as:
 $ sudo docker-compose run app $COMMAND
 ```
 
+If the commands run from inside the container do not allow write access from outside grant access with:
+
+```
+$ sudo chown -R user:user $VOLUME_DIR
+```
+
 ## GEMS:
 - [Rut Validator](https://github.com/Phifo/rut_validation)
