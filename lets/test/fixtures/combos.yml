@@ -9,7 +9,6 @@ one:
   max_age: 1
   gender: 1
   stock: 1
-  admission_level: 1
 
 two:
   name: MyString
@@ -20,4 +19,3 @@ two:
   max_age: 1
   gender: 1
   stock: 1
-  admission_level: 1

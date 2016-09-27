@@ -2,15 +2,14 @@ require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
   def setup
-  	@product = Product.new(name: "Piscola Coca-Normal", description: "Pisco + Coca Normal con Hielo", min_age: 18, grants_admission: 0, admission_level: 1)
+  	@product = Product.new(name: "Piscola Coca-Normal", description: "Pisco + Coca Normal con Hielo", min_age: 18, product_type: 1)
   end
 
   test "should be valid" do
     @product.name = "12345abc"
     @product.description = "123456789abc"
     @product.min_age = "18"
-    @product.grants_admission = 1
-    @product.admission_level = 3
+    @product.product_type = 1
   	assert @product.valid?	
   end
 
@@ -51,26 +50,17 @@ class ProductTest < ActiveSupport::TestCase
   	assert @product.valid?, "Valid ages should be accepted"
   end
 
-  test "grants_admission should be valid" do 
-  	@product.grants_admission = nil
-  	assert_not @product.valid?, "Null grants_admission should not be accepted"
-  	@product.grants_admission = "Falso"
-  	assert_not @product.valid?, "Invalid grants_admission should not be accepted"
-  	@product.grants_admission = 1
-  	assert @product.valid?, "Valid true grants_admission should be accepted"
-  	@product.grants_admission = 0
-  	assert @product.valid?, "Valid false grants_admission should be accepted"
+  test "product_type should be valid" do 
+  	@product.product_type = nil
+  	assert_not @product.valid?, "Null product_type should not be accepted"
+  	@product.product_type = "Falso"
+  	assert_not @product.valid?, "Invalid product_type should not be accepted"
+  	@product.product_type = 0
+  	assert_not @product.valid?, "Type should be greater than 0"
+    @product.product_type = 3
+    assert_not @product.valid?, "Type should be less than 3"
+    @product.product_type = 1
+    assert @product.valid?, "Valid product_type should be accepted"
   end
-
-  test "admission_level should be valid" do 
-  	@product.admission_level = nil
-  	assert_not @product.valid?, "Admission_level can't be null"
-  	@product.admission_level = -1
-  	assert_not @product.valid?, "Stock can't be negative"
-  	@product.admission_level = 6
-  	assert_not @product.valid?, "Stock can't be grater than 5"
-  	@product.admission_level = 4
-  	assert @product.valid?, "Valid admission_levels must be accepted"
-  end
-
+  
 end

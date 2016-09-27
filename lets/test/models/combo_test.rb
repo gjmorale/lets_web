@@ -11,7 +11,6 @@ class ComboTest < ActiveSupport::TestCase
   		max_age: 24,
   		gender: 1,
   		stock: 1000,
-  		admission_level: 3
 		)
   end
 
