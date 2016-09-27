@@ -74,8 +74,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "social_id should be unique" do
     duplicate_user = @user.dup
+    @user.social_id = "17.700.955-5"
+    duplicate_user.social_id = "17.700.955-5"
     @user.save
     assert_not duplicate_user.valid?, "Social_id should be unique"
+    @user.social_id = "17.700.955-5"
+    duplicate_user.social_id = "17700955-5"
+    @user.save
+    assert_not duplicate_user.valid?, "Social_id should be unique indiferent of dots"
   end
 
 end

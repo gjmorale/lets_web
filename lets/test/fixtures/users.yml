@@ -5,11 +5,11 @@ one:
   last_name: MyString
   birth_date: 2016-07-14 17:32:39
   gender: 1
-  social_id: MyString
+  social_id: 17.700.800-1
 
 two:
   first_name: MyString
   last_name: MyString
   birth_date: 2016-07-14 17:32:39
   gender: 1
-  social_id: MyString
+  social_id: 17.700.955-5
