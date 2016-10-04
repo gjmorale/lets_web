@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  belongs_to :account, inverse_of: :user
+
 	before_validation :social_id_trimming
 
   validates :first_name, 	presence: true, length:{maximum:50, minimum:2}

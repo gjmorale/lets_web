@@ -1,7 +1,26 @@
 <% provide :title, "Sign Up"%>
 <h1>Accounts#new</h1>
-<%= form_for(@account) do |f| %>
+<%= form_for(@account, url: signup_path) do |f| %>
 	<%= render 'shared/error_messages' %>
+
+	<%= f.fields_for :user do |p| %>
+
+	  <%= p.label :first_name %>
+	  <%= p.text_field :first_name %>
+
+	  <%= p.label :last_name %>
+	  <%= p.text_field :last_name %>
+
+	  <%= p.label :social_id %>
+	  <%= p.text_field :social_id %>
+
+	  <%= p.label :birth_date %>
+	  <%= p.datetime_select :birth_date %>
+
+	  <%= p.label :gender %>
+	  <%= p.select :gender, [['Hombre', 0], ['Mujer', 1]] %>
+
+	<% end %>
 
   <%= f.label :email %>
   <%= f.email_field :email %>

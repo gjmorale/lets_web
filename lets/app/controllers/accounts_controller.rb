@@ -1,16 +1,19 @@
 class AccountsController < ApplicationController
   def new
   	@account = Account.new
+  	@user = @account.build_user
   end
 
   def show
   	@account = Account.find(params[:id])
+  	@account.user.build
   end
 
   def create
   	@account = Account.new(account_params)
     if @account.save
-      # Handle a successful save.
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @account.user
     else
       render 'new'
     end
@@ -18,6 +21,6 @@ class AccountsController < ApplicationController
 
   private
   	def account_params
-      params.require(:account).permit(:email, :password, :password_confirmation)
+      params.require(:account).permit(:email, :password, :password_confirmation, user_attributes: [:first_name, :last_name, :gender, :birth_date, :social_id])
     end
 end
