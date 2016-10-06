@@ -21,9 +21,5 @@ test:
   database: db/test
 
 production:
-  #<<: *default
-  #database: db/production
-  database: example_production
-  adapter: postgresql
-  host: localhost
-  password:
+  <<: *default
+  database: db/production
