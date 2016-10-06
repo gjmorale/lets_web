@@ -15,7 +15,7 @@
 	  <%= p.text_field :social_id %>
 
 	  <%= p.label :birth_date %>
-	  <%= p.datetime_select :birth_date %>
+	  <%= p.date_select :birth_date, start_year: 1950, end_year: Date.today.year %>
 
 	  <%= p.label :gender %>
 	  <%= p.select :gender, [['Hombre', 0], ['Mujer', 1]] %>
