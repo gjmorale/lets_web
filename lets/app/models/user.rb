@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :birth_date, 	presence: true
   validates_inclusion_of :birth_date, in: (100.years.ago)..(5.years.ago)
   
-  validates_format_of :first_name, with: /\A[A-Za-z]+(\ [A-Za-z]+)*\z/i
+  validates_format_of :first_name, with: /\A[A-Za-z]+(\ [A-Za-z]+)*\z/i #Tildes...
   validates_format_of :last_name, with: /\A[A-Za-z]+(\ [A-Za-z]+)*\z/i
 
   private

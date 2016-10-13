@@ -2,8 +2,8 @@
 
 one:
   email: mail@uno.com
-  password_digest: MyString
+  password_digest: <%= Account.digest("password") %>
 
 two:
   email: mail@dos.com
-  password_digest: MyString
+  password_digest: <%= Account.digest("password") %>
