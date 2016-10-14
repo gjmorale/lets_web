@@ -43,10 +43,31 @@ Run commands to the server as:
 $ sudo docker-compose run app $COMMAND
 ```
 
-If the commands run from inside the container do not allow write access from outside grant access with:
+##Troubleshooting
+
+If the commands ran from inside the container do not allow write access grant them with:
 
 ```
 $ sudo chown -R user:user $VOLUME_DIR
+```
+
+If server complains about other process running run
+
+```
+$ sudo rm lets/tmp/pids/server.pid
+```
+
+##Deployment
+
+To deploy into Heroku
+NOTICE: Actual branch will be uploaded, not master
+INFO: heroku run rake db:migrate is optional but recommended
+
+```
+$ heroku maintenance:on
+$ git subtree push --prefix heroku master
+$ heroku run rake db:migrate
+$ heroku maintenance:off
 ```
 
 ## GEMS:
