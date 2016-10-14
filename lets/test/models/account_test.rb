@@ -4,6 +4,8 @@ class AccountTest < ActiveSupport::TestCase
 
 	def setup
 		@account = Account.new(email: "prueba@uno.com", password: "clave123", password_confirmation: "clave123")
+    @user = User.new(first_name: "Red", last_name: "PowerRanger", birth_date: DateTime.parse("1991-03-14 10:10:10"), gender: 1, social_id: "17.700.955-5")
+    @account.user = @user
 	end
 
 	test "should be valid" do

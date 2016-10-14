@@ -12,13 +12,13 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get landing" do
-    get static_pages_landing_url
+    get landing_url
     assert_response :success
     assert_select "title", "#{@base_title} Welcome"
   end
 
   test "should get about" do
-    get static_pages_about_url
+    get about_url
     assert_response :success
     assert_select "title", "#{@base_title} About Us"
   end

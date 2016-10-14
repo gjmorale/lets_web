@@ -6,12 +6,12 @@ class AccountsController < ApplicationController
 
   def show
   	@account = Account.find(params[:id])
-  	@account.user.build
   end
 
   def create
   	@account = Account.new(account_params)
     if @account.save
+    	log_in @account
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @account.user
     else

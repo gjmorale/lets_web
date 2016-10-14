@@ -4,6 +4,13 @@ module SessionsHelper
     session[:account_id] = account.id
   end
 
+	# Logs in the given user.
+  def log_out
+    session.delete :account_id
+    @current_account = nil
+    @current_user = nil
+  end
+
   # Returns the current logged-in user (if any).
   def current_user
     if logged_in?
