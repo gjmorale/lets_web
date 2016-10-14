@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     if account && account.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
       log_in account
+      params[:session][:remember_me] == '1' ? remember(account) : forget(account)
       redirect_to account.user
     else
       # Create an error message.
@@ -17,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-  	log_out
+  	log_out if logged_in?
   	redirect_to root_url
   end
 

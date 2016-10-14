@@ -52,4 +52,8 @@ class AccountTest < ActiveSupport::TestCase
   	assert @account.valid?, "Valid passwords should be accepted"
   end
 
+  test "authenticated? should return false for accounts with nil digest" do
+    assert_not @account.authenticated?('')
+  end
+
 end
