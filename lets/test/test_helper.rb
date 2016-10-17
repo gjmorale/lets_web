@@ -18,6 +18,11 @@ class ActiveSupport::TestCase
     session[:account_id] = account.id
   end
 
+  # Log in as a particular user.
+  def log_out
+    session[:account_id] = nil
+  end
+
 end
 
 class ActionDispatch::IntegrationTest
@@ -27,5 +32,10 @@ class ActionDispatch::IntegrationTest
     post login_path, params: { session: { email: account.email,
                                           password: password,
                                           remember_me: remember_me } }
+  end
+
+  # Log out.
+  def log_out
+    delete logout_path
   end
 end

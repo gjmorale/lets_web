@@ -24,6 +24,11 @@ module SessionsHelper
     end
   end
 
+  # Returns true if the given user is the current user.
+  def current_user?(user)
+    user.nil? ? false : user == current_user
+  end
+
   # Returns the current logged-in user (if any).
   def current_account
     if (account_id = session[:account_id])
@@ -35,6 +40,10 @@ module SessionsHelper
         @current_account = account
       end
     end
+  end
+
+  def current_account?(account)
+    account.nil? ? false : account == current_account
   end
 
   # Remembers a user in a persistent session.
@@ -49,6 +58,17 @@ module SessionsHelper
     account.forget
     cookies.delete(:account_id)
     cookies.delete(:remember_token)
+  end
+
+  # Redirects to stored location (or to the default).
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # Stores the URL trying to be accessed.
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 
 end
