@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   validates_format_of :first_name, with: /\A[A-Za-z]+(\ [A-Za-z]+)*\z/i #Tildes...
   validates_format_of :last_name, with: /\A[A-Za-z]+(\ [A-Za-z]+)*\z/i
 
+  def public_gender
+    self.gender == 1 ? "Female" : "Male"
+  end
+
   private
   	def social_id_trimming
   		self.social_id.remove!(".") if not self.social_id.blank?

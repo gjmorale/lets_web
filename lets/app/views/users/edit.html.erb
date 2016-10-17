@@ -1,2 +1,26 @@
-<h1>Users#edit</h1>
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+
+  <%= form_for(@user) do |f| %>
+  	<% @object_with_errors = @user %>
+    <%= render 'shared/error_messages' %>
+
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+
+	  <%= f.label :social_id %>
+	  <%= f.text_field :social_id %>
+
+	  <%= f.label :birth_date %>
+	  <%= f.date_select :birth_date, start_year: 1950, end_year: Date.today.year %>
+
+	  <%= f.label :gender %>
+	  <%= f.select :gender, [['Hombre', 0], ['Mujer', 1]] %>
+
+    <%= f.submit "Save changes", class: "btn btn-primary" %>
+  <% end %>
+
 <p>Find me in app/views/users/edit.html.erb</p>

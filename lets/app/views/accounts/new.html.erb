@@ -1,6 +1,7 @@
 <% provide :title, "Sign Up"%>
 <h1>Accounts#new</h1>
 <%= form_for(@account, url: signup_path) do |f| %>
+ 	<% @object_with_errors = @account %>
 	<%= render 'shared/error_messages' %>
 
 	<%= f.fields_for :user do |p| %>
