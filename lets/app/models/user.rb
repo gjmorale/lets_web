@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  before_save :capitalize_names
 
   belongs_to :account, inverse_of: :user
 
@@ -18,9 +19,18 @@ class User < ActiveRecord::Base
     self.gender == 1 ? "Female" : "Male"
   end
 
+  def full_name
+    self.first_name + " " + self.last_name
+  end
+
   private
   	def social_id_trimming
   		self.social_id.remove!(".") if not self.social_id.blank?
   	end
+
+    def capitalize_names
+      self.first_name.to_s.titleize
+      self.last_name.to_s.titleize
+    end
 
 end
