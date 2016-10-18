@@ -3,6 +3,7 @@
 one:
   email: mail@uno.com
   password_digest: <%= Account.digest("password") %>
+  admin: true
 
 two:
   email: mail@dos.com
