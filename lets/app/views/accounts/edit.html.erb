@@ -1,0 +1,17 @@
+<% provide :title, "Account Settings"%>
+<h1>Account Settings</h1>
+<%= form_for(@account) do |f| %>
+ 	<% @object_with_errors = @account %>
+	<%= render 'shared/error_messages' %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation, "Confirmation" %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "Update", class: "" %>
+<% end %>
