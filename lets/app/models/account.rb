@@ -2,7 +2,7 @@ class Account < ApplicationRecord
 attr_accessor :remember_token
 before_save :downcase_email
 
-has_one :user, inverse_of: :account, required: true, dependent: :destroy, autosave: true
+belongs_to :user, inverse_of: :account, required: true, dependent: :destroy, autosave: true
 
 accepts_nested_attributes_for :user
 

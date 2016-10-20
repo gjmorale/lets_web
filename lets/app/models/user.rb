@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   before_save :capitalize_names
 
-  belongs_to :account, inverse_of: :user
+  has_one :account, inverse_of: :user
 
 	before_validation :social_id_trimming
 
