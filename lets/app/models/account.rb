@@ -3,6 +3,8 @@ attr_accessor :remember_token
 before_save :downcase_email
 
 belongs_to :user, inverse_of: :account, required: true, dependent: :destroy, autosave: true
+has_many :prod_owners
+has_many :producers, through: :prod_owners
 
 accepts_nested_attributes_for :user
 

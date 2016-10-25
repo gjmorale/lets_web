@@ -1,0 +1,21 @@
+<h1>Producers#new</h1>
+<p>Find me in app/views/producers/new.html.erb</p>
+
+
+<% provide :title, "New Producer"%>
+<h1>Producers#new</h1>
+<%= form_for(@producer) do |f| %>
+ 	<% @object_with_errors = @producer %>
+	<%= render 'shared/error_messages' %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :fantasy_name %>
+  <%= f.text_field :fantasy_name %>
+
+  <%= f.label :social_id %>
+  <%= f.text_field :social_id %>
+
+  <%= f.submit "Create", class: "" %>
+<% end %>

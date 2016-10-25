@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
   before_save :capitalize_names
+  before_validation :social_id_trimming
 
   has_one :account, inverse_of: :user
-
-	before_validation :social_id_trimming
 
   validates :first_name, 	presence: true, length:{maximum:50, minimum:2}
   validates :last_name, 	presence: true, length:{maximum:50, minimum:2}

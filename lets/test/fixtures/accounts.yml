@@ -10,3 +10,8 @@ two:
   email: mail@dos.com
   password_digest: <%= Account.digest("password") %>
   user: two
+
+admin_of_producer_one:
+  email: mail@tres.com
+  password_digest: <%= Account.digest("password") %>
+  user: admin_of_producer_one

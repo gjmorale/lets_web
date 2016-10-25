@@ -61,4 +61,16 @@ class ProducerTest < ActiveSupport::TestCase
   	@producer.social_id = "1a78j93@-5"
   	assert_not @producer.valid?, "Invalid characters must be invalid"
   end
+
+  test "social_id should be unique" do
+    duplicate_producer = @producer.dup
+    @producer.social_id = "17.700.955-5"
+    duplicate_producer.social_id = "17.700.955-5"
+    @producer.save
+    assert_not duplicate_producer.valid?, "Social_id should be unique"
+    @producer.social_id = "17.700.955-5"
+    duplicate_producer.social_id = "17700955-5"
+    @producer.save
+    assert_not duplicate_producer.valid?, "Social_id should be unique indiferent of dots"
+  end
 end
