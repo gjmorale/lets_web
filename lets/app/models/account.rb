@@ -3,13 +3,13 @@ attr_accessor :remember_token
 before_save :downcase_email
 
 belongs_to :user, inverse_of: :account, required: true, dependent: :destroy, autosave: true
-has_many :prod_owners
+has_many :prod_owners, dependent: :destroy
 has_many :producers, through: :prod_owners
 
 accepts_nested_attributes_for :user
 
 validates :email, 	presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false }
-validates :password, 	presence: true, length: { minimum: 6, maximum: 12 }
+validates :password, 	presence: true, length: { minimum: 6, maximum: 12 }, allow_nil: true
 
 validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

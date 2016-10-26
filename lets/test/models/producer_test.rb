@@ -2,7 +2,11 @@ require 'test_helper'
 
 class ProducerTest < ActiveSupport::TestCase
   def setup
-  	@producer = Producer.new(name: "The big company LTDA.", fantasy_name: "Friends! Co.", social_id: "17.700.955-5")
+  	@producer = producers :one
+    @owner = accounts :admin_of_producer_one
+    @owner.password = 'password'
+    @not_owner = accounts :two
+    @not_owner.password = 'password'
   end
 
   test "should be valid" do
@@ -72,5 +76,25 @@ class ProducerTest < ActiveSupport::TestCase
     duplicate_producer.social_id = "17700955-5"
     @producer.save
     assert_not duplicate_producer.valid?, "Social_id should be unique indiferent of dots"
+  end
+
+  test "should add owners" do
+    assert_no_difference '@producer.owners.count' do
+      @producer.add_owner @owner
+    end
+    assert_difference '@producer.owners.count', 1 do
+      @producer.add_owner @not_owner
+    end
+  end
+
+  test "should remove owners" do
+    assert_no_difference 'Account.count' do
+      assert_no_difference '@producer.owners.count' do
+        @producer.remove_owner @not_owner
+      end
+      assert_difference '@producer.owners.count', -1 do
+        @producer.remove_owner @owner
+      end
+    end
   end
 end

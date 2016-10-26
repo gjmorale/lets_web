@@ -48,16 +48,4 @@ class AccountsController < ApplicationController
                :password_confirmation, user_attributes: [:first_name,
                :last_name, :gender, :birth_date, :social_id])
     end
-
-    def logged_in_account
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-    def is_admin
-      redirect_to root_url unless current_account.admin?
-    end
 end

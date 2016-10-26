@@ -1,7 +1,7 @@
 class ProducersController < ApplicationController
   before_action :logged_in_account, only: [:new, :create, :edit, :update, :destroy]
   before_action :is_admin, only: [:new, :create, :destroy]
-  before_action :is_producer_admin, only: [:edit, :update]
+  before_action :is_owner, only: [:edit, :update]
 
   def show
   	@producer = Producer.find(params[:id])
@@ -35,23 +35,8 @@ class ProducersController < ApplicationController
                :social_id)
   	end
 
-    def logged_in_account
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-  	def is_admin
-      redirect_to root_url unless current_account.admin?
-  	end
-
-  	def is_producer_admin
+  	def is_owner
   		@producer = Producer.find(params[:id])
-      unless @producer.admins.exists?(current_account.id)
-      	flash[:danger] = "You don't have permission"
-      	redirect_to root_url 
-      end
+      is_owner? @producer
   	end
 end
