@@ -49,6 +49,9 @@ class ProducersController < ApplicationController
 
   	def is_producer_admin
   		@producer = Producer.find(params[:id])
-      redirect_to root_url unless @producer.admins.exists?(current_account.id)
+      unless @producer.admins.exists?(current_account.id)
+      	flash[:danger] = "You don't have permission"
+      	redirect_to root_url 
+      end
   	end
 end
