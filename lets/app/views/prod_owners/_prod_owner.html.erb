@@ -1,0 +1,14 @@
+<li>
+  <%= link_to prod_owner.account.user.full_name, prod_owner.account.user %>
+  <% if is_owner? prod_owner.producer %>
+  	| 
+  	<%= form_for prod_owner do |f|%>
+	  	<%= f.label :role %>
+	    <%= f.text_field :role %>
+    <%= f.submit "Save changes" %>
+    <% end %>
+    | <%= link_to "delete", prod_owner, 
+    															method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

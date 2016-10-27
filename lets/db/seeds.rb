@@ -34,6 +34,18 @@ user.social_id = "17.700.955-5"
 user.gender = 0
 account.save
 
+producer = Producer.new()
+producer.fantasy_name = "Productora LETS"
+fantasy_name = producer.fantasy_name
+producer.name = "Productora LETS SpA"
+producer.social_id = generate_social_id
+producer.save
+prod_owner = ProdOwner.new()
+prod_owner.account_id = (Account.find_by email: "mail@mail.com").id
+prod_owner.producer_id = producer.id
+prod_owner.role = "Big Boss"
+prod_owner.save
+
 case Rails.env
 when "development"
 	total_saved = 0
@@ -51,6 +63,42 @@ when "development"
 	  total_saved += 1 if account.save
 	end
 	puts("Total: " + total_saved.to_s)
+	total_saved = 0
+
+	producer = Producer.find_by fantasy_name: fantasy_name
+	7.times do |m|
+		prod_owner = ProdOwner.new()
+		prod_owner.account_id = (Account.find_by email: "example-#{40+m+1}@mail.org").id
+		prod_owner.producer_id = producer.id
+		prod_owner.role = "Sub-Manager"
+		prod_owner.save
+	end
+
+	8.times do |n|
+		producer = Producer.new()
+		producer.fantasy_name = "Company #{n+1}"
+		producer.name = "Company #{n+1} LTDA"
+		producer.social_id = generate_social_id
+		if producer.save
+			3.times do |m|
+				prod_owner = ProdOwner.new()
+				prod_owner.account_id = (Account.find_by email: "example-#{n*3+m+1}@mail.org").id
+				prod_owner.producer_id = producer.id
+				prod_owner.role = "Manager"
+				unless prod_owner.save
+					puts 'ProdOwner Errors:'
+					prod_owner.errors.full_messages.each do |msg|
+						puts msg
+					end
+				end
+			end
+		else
+			puts 'Producer Errors:'
+			producer.errors.full_messages.each do |msg|
+				puts msg
+			end
+		end
+	end
 when "production"
   puts 'production'
 end

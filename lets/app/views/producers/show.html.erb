@@ -1,5 +1,24 @@
-<h1>Producers#show</h1>
-<h2><%= @producer.fantasy_name %></h2>
-<p><%= @producer.name %></p>
+<% provide(:title, @producer.name) %>
+
+<h1><%= @producer.fantasy_name %></h1>
+<h2><%= @producer.name %></h2>
 <p><%= @producer.social_id %></p>
-<p>Find me in app/views/producers/show.html.erb</p>
+
+<ul>
+  <%= render @producer.prod_owners %>
+</ul>
+
+<% if is_owner? @producer %>
+	<h2>Add a new owner</h2>
+
+	<%= form_for [@producer, @prod_owner] do |f| %>
+
+		<%= f.label :account_id %><br />
+  	<%= f.select :account_id, options_for_select(Account.all.map{|s|[s.user.full_name, s.id]}) %>
+
+		<%= f.label :role %>
+    <%= f.text_field :role %>
+
+	  <%= f.submit "Save changes" %>
+	<% end %>
+<% end %>

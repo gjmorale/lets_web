@@ -46,6 +46,10 @@ module SessionsHelper
     account.nil? ? false : account == current_account
   end
 
+  def current_admin?
+    current_account.nil? ? false : @current_account.admin?
+  end
+
   # Remembers a user in a persistent session.
   def remember(account)
     account.remember

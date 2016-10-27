@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :accounts
   resources :users
   resources :producers do
-    resources :prod_owners, only: [:create, :update, :destroy] 
+    resources :prod_owners, only: [:create] 
   end
+  resources :prod_owners, only: [:update, :destroy]
 
 	root 'static_pages#landing'
   get '/landing', to: 'static_pages#landing'

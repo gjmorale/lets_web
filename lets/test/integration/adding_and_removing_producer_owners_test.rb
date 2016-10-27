@@ -38,7 +38,7 @@ class AddingAndRemovingProducerOwnersTest < ActionDispatch::IntegrationTest
 		assert @producer.owners.include? @new_owner
 		#Now remove him
 		prod_owner = @producer.prod_owners.find_by account_id: @new_owner.id
-		delete producer_prod_owner_path @producer, prod_owner
+		delete prod_owner_path prod_owner
 		follow_redirect!
 		assert_not flash.empty?
     assert_template 'producers/show'
@@ -62,7 +62,7 @@ class AddingAndRemovingProducerOwnersTest < ActionDispatch::IntegrationTest
 		assert @producer.owners.include? @new_owner
 		#Now remove him
 		prod_owner = @producer.prod_owners.find_by account_id: @new_owner.id
-		delete producer_prod_owner_path @producer, prod_owner
+		delete prod_owner_path prod_owner
 		follow_redirect!
 		assert_not flash.empty?
     assert_template 'producers/show'
@@ -77,7 +77,7 @@ class AddingAndRemovingProducerOwnersTest < ActionDispatch::IntegrationTest
   	get producer_path @producer
   	new_role = "Big Boss"
   	prod_owner = @producer.prod_owners.find_by account_id: @old_owner.id
-  	patch producer_prod_owner_path(@producer, prod_owner), 
+  	patch prod_owner_path prod_owner, 
 										params: { prod_owner: { role: new_role } }
 		follow_redirect!
 		assert_not flash.empty?

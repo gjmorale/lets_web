@@ -17,10 +17,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_url unless current_account.admin?
   	end
 
-    def is_owner? producer
-        unless producer.owners.exists?(current_account.id)
+    def account_is_owner? producer
+        unless is_owner? producer
         flash[:danger] = "You don't have permission"
         redirect_to root_url 
       end
+    end
+
+    #Duplicated from pro_owners_helper for strage reasons
+    def is_owner?(producer)
+      producer.nil? ? false : producer.owners.include?(current_account) 
     end
 end
