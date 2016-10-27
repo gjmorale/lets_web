@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  account: admin_of_producer_one
+  account: owner_of_producer_one
   producer: one
   role: MyString
 

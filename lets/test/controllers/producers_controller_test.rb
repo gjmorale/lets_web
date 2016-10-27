@@ -5,7 +5,7 @@ class ProducersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @producer = producers :one
     @admin = accounts :one
-    @owner = accounts :admin_of_producer_one
+    @owner = accounts :owner_of_producer_one
     @not_owner = accounts :two
   end
 

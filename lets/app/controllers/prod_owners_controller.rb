@@ -14,9 +14,20 @@ class ProdOwnersController < ApplicationController
 	end
 
 	def update
+		@prod_owner = ProdOwner.find(params[:id])
+    if @prod_owner.update_attributes(prod_owner_params)
+      flash[:success] = "Producer's owner updated!"
+      redirect_to Producer.find(@prod_owner.producer_id)
+    else
+      redirect_to root_url
+    end
 	end
 
 	def destroy
+		@producer = Producer.find(params[:producer_id])
+		ProdOwner.find(params[:id]).destroy
+    flash[:success] = "Owner successfuly removed from producer"
+    redirect_to @producer
 	end
 
 	private

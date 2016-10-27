@@ -3,7 +3,7 @@ require 'test_helper'
 class ProducerTest < ActiveSupport::TestCase
   def setup
   	@producer = producers :one
-    @owner = accounts :admin_of_producer_one
+    @owner = accounts :owner_of_producer_one
     @owner.password = 'password'
     @not_owner = accounts :two
     @not_owner.password = 'password'

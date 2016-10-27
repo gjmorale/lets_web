@@ -14,7 +14,7 @@ two:
   gender: 1
   social_id: 17.700.955-5
 
-admin_of_producer_one:
+owner_of_producer_one:
   first_name: Pablo
   last_name: Lets
   birth_date: 1990-07-14 17:32:39
