@@ -5,5 +5,8 @@
 <h2><%= @user.social_id %></h2>
 <p><%= @user.public_gender %></p>
 <p><%= @user.birth_date %></p>
- 
+
+<ul>
+	<%= render @user.account.producers %>
+</ul>
  
