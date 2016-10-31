@@ -28,7 +28,7 @@ class EventsController < ApplicationController
       flash[:success] = "New event created!"
       redirect_to @event
   	else
-  		redirect_to root_url
+  		render 'new'
   	end
   end
 
