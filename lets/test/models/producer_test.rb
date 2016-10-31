@@ -97,4 +97,25 @@ class ProducerTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test "should add events" do
+    assert_no_difference '@producer.events.count' do
+      @event = events :one
+      assert_equal @producer.id, @event.producer_id 
+      @producer.events << @event
+      @event.producer_id = @producer.id
+      @producer.save!
+      @event.save!
+      @event.reload
+      assert_equal @producer.id, @event.producer_id 
+    end
+    assert_difference '@producer.events.count', 1 do
+      @event = events :two
+      @producer.events << @event
+      @producer.save
+      @event.reload
+      assert @producer.errors.empty?
+      assert_equal @producer.id, @event.producer_id
+    end
+  end
 end

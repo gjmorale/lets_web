@@ -2,12 +2,10 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   def setup
-  	@producer = Producer.new(name: "The big company LTDA.", fantasy_name: "Friends! Co.", social_id: "17.700.955-5")
-  	@event = Event.new(name: "First Event", description: "This is the first event of it's kind", capacity: 500, min_age: 18, max_age: 25, open_date: DateTime.parse("2016-11-25 10:10:10"), close_date: DateTime.parse("2016-11-25 16:10:10"))
+  	@event = events :one
   end
 
   test "should be valid" do
-  	assert @producer.valid?
   	assert @event.valid?	
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025192656) do
+ActiveRecord::Schema.define(version: 20161031152223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20161025192656) do
     t.datetime "updated_at",  null: false
     t.datetime "open_date"
     t.datetime "close_date"
+    t.integer  "producer_id"
+    t.index ["producer_id"], name: "index_events_on_producer_id", using: :btree
   end
 
   create_table "prod_owners", force: :cascade do |t|
@@ -118,6 +120,7 @@ ActiveRecord::Schema.define(version: 20161025192656) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "events", "producers"
   add_foreign_key "prod_owners", "accounts"
   add_foreign_key "prod_owners", "producers"
 end

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :users
   resources :producers do
     resources :prod_owners, only: [:create] 
+    resources :events, only: [:index, :new, :create]
   end
+  resources :events, only: [:update, :destroy, :show, :edit]
   resources :prod_owners, only: [:update, :destroy]
 
 	root 'static_pages#landing'

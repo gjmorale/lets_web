@@ -1,15 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
-  capacity: 1
-  min_age: 1
-  max_age: 1
+  name: "First Event"
+  description: "This is the first event of it's kind"
+  capacity: 500
+  min_age: 18 
+  max_age: 25 
+  open_date: <%= DateTime.parse("2016-11-15 10:10:10").to_s(:db) %> 
+  close_date: <%= DateTime.parse("2016-11-25 16:10:10").to_s(:db) %>
+  producer: one
 
 two:
-  name: MyString
-  description: MyString
-  capacity: 1
-  min_age: 1
-  max_age: 1
+  name: "Second Event"
+  description: "This is the second event of it's kind"
+  capacity: 700
+  min_age: 21 
+  max_age: 40 
+  open_date: <%= DateTime.parse("2016-10-15 10:10:10").to_s(:db) %> 
+  close_date: <%= DateTime.parse("2016-10-25 16:10:10").to_s(:db) %>
