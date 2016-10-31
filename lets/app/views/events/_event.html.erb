@@ -1,0 +1,17 @@
+<li>
+  <%= link_to event.name, event %>
+  <p><%= event.description %></p>
+  <p>
+  	capacity: <%= event.capacity %> |
+  	min age: <%= event.min_age %> |
+  	max age: <%= event.max_age %> |
+  	opens: <%= event.open_date %> |
+  	closes: <%= event.close_date %>
+  </p>
+
+  <% if is_owner?(event.producer) %>
+    <%= link_to "Edit", edit_event_path(event) %> | 
+    <%= link_to "Delete", event, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

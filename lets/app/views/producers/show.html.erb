@@ -4,6 +4,8 @@
 <h2><%= @producer.name %></h2>
 <p><%= @producer.social_id %></p>
 
+<%= link_to "Events", producer_events_path(@producer) %>
+
 <ul>
   <%= render @producer.prod_owners %>
 </ul>

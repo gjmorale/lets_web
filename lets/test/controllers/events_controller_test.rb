@@ -10,7 +10,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def hashed_event event
-    params = {params: {
+    params = {params: {event: {
       name: event.name,
       description: event.description,
       capacity: event.capacity,
@@ -18,7 +18,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
       max_age: event.max_age,
       open_date: event.open_date, 
       close_date: event.close_date
-    }}
+    }}}
   end
 
   test "should get new" do
@@ -46,19 +46,22 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   test "should get create" do
     log_in_as @owner
     post producer_events_url @producer, hashed_event(@new_event)
-    assert_response :success
+    follow_redirect!
+    assert_template "events/show"
   end
 
   test "should get update" do
     log_in_as @owner
     patch event_url @event, hashed_event(@event)
-    assert_response :success
+    follow_redirect!
+    assert_template "events/show"
   end
 
   test "should get destroy" do
     log_in_as @owner
     delete event_url @event
-    assert_response :success
+    follow_redirect!
+    assert_template "events/index"
   end
 
   test "should redirect when not logged in" do

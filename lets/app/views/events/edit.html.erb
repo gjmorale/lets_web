@@ -1,2 +1,31 @@
-<h1>Events#edit</h1>
+<% provide :title, "Edit Event"%>
+<h1>Edit Event</h1>
+<%= form_for @event do |f| %>
+ 	<% @object_with_errors = @event %>
+	<%= render 'shared/error_messages' %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :capacity %>
+  <%= f.number_field :capacity %>
+
+  <%= f.label :min_age %>
+  <%= f.number_field :min_age %>
+
+  <%= f.label :max_age %>
+  <%= f.number_field :max_age %>
+
+  <%= f.label :open_date %>
+  <%= f.date_select :open_date %>
+
+  <%= f.label :close_date %>
+  <%= f.date_select :close_date %>
+
+  <%= f.submit "Update" %>
+<% end %>
+
 <p>Find me in app/views/events/edit.html.erb</p>
