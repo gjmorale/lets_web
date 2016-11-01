@@ -2,16 +2,7 @@ require 'test_helper'
 
 class ComboTest < ActiveSupport::TestCase
   def setup
-  	@combo = Combo.new(
-  		name: "First Combo", 
-  		description: "The first combo for testing purposes", 
-  		buyable_from: DateTime.parse("2016-07-01 10:10:10"),
-  		buyable_until: DateTime.parse("2016-07-15 10:10:10"),
-  		min_age: 18,
-  		max_age: 24,
-  		gender: 1,
-  		stock: 1000,
-		)
+  	@combo = combos :one
   end
 
   test "should be valid" do

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 1
+  redeem_start: 2016-11-01 16:33:58
+  redeem_finish: 2016-11-01 16:33:58
+  combo: one
+  product: one
+
+two:
+  price: 1
+  redeem_start: 2016-11-01 16:33:58
+  redeem_finish: 2016-11-01 16:33:58
+  combo: two
+  product: two

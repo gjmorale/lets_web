@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031152223) do
+ActiveRecord::Schema.define(version: 20161101164740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20161031152223) do
     t.integer  "stock"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "event_id"
+    t.index ["event_id"], name: "index_combos_on_event_id", using: :btree
   end
 
   create_table "events", force: :cascade do |t|
@@ -66,6 +68,18 @@ ActiveRecord::Schema.define(version: 20161031152223) do
     t.datetime "close_date"
     t.integer  "producer_id"
     t.index ["producer_id"], name: "index_events_on_producer_id", using: :btree
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.integer  "price"
+    t.datetime "redeem_start"
+    t.datetime "redeem_finish"
+    t.integer  "combo_id"
+    t.integer  "product_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["combo_id"], name: "index_offers_on_combo_id", using: :btree
+    t.index ["product_id"], name: "index_offers_on_product_id", using: :btree
   end
 
   create_table "prod_owners", force: :cascade do |t|
@@ -120,7 +134,10 @@ ActiveRecord::Schema.define(version: 20161031152223) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "combos", "events"
   add_foreign_key "events", "producers"
+  add_foreign_key "offers", "combos"
+  add_foreign_key "offers", "products"
   add_foreign_key "prod_owners", "accounts"
   add_foreign_key "prod_owners", "producers"
 end

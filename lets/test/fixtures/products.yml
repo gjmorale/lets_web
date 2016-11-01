@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
-  min_age: 1
+  name: First Product
+  description: This is the first product
+  min_age: 18
+  product_type: 1
 
 two:
-  name: MyString
-  description: MyString
-  min_age: 1
+  name: Second Product
+  description: This is the second product
+  min_age: 15
+  product_type: 1

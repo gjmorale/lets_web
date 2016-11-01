@@ -1,0 +1,20 @@
+<% provide :title, "New Product"%>
+<h1>New Product</h1>
+<%= form_for(@product) do |f| %>
+ 	<% @object_with_errors = @product %>
+	<%= render 'shared/error_messages' %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :min_age %>
+  <%= f.number_field :min_age %>
+
+  <%= f.label :product_type %>
+  <%= f.number_field :product_type %>
+
+  <%= f.submit "Create" %>
+<% end %>
