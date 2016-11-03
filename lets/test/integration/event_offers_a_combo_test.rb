@@ -113,5 +113,5 @@ class EventOffersAComboTest < ActionDispatch::IntegrationTest
 			assert_template 'events/show'
 		end
 	end
-
+	
 end

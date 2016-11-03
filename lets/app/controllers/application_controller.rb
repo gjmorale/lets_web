@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     end
 
   	def is_admin
+      flash[:danger] = "Requires administrative privileges"
       redirect_to root_url unless current_account.admin?
   	end
 

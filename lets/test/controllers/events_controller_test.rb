@@ -94,10 +94,10 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_redirected_to root_url
     #Case NEW
-    get new_producer_path
+    get new_producer_event_path @producer
     assert_redirected_to root_url
     #Case CREATE
-    post producers_path, hashed_event(@new_event)
+    post producer_events_path @producer, hashed_event(@new_event)
     assert_redirected_to root_url
   end
 

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save :capitalize_names
   before_validation :social_id_trimming
 
-  has_one :account, inverse_of: :user, dependent: :destroy
+  has_one :account, inverse_of: :user, dependent: :destroy, autosave: true
 
   validates :first_name, 	presence: true, length:{maximum:50, minimum:2}
   validates :last_name, 	presence: true, length:{maximum:50, minimum:2}
@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
 
   def full_name
     self.first_name + " " + self.last_name
+  end
+
+  def toggle_admin toggle
+    self.account.admin = toggle
+    self.save
   end
 
   private

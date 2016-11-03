@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :accounts
-  resources :users
+  resources :users do 
+    member do
+      post   '/admin',   to: 'admins#create'
+      delete '/admin',   to: 'admins#destroy'
+    end
+  end
   resources :producers do
     resources :prod_owners, only: [:create] 
     resources :events, only: [:index, :new, :create]

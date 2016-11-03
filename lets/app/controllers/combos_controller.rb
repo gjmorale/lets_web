@@ -1,4 +1,6 @@
 class CombosController < ApplicationController
+  before_action :logged_in_account, only: [:create, :update, :destroy]
+  before_action :account_is_owner, only: [:create, :update, :destroy]
 
 	def create
   	@event = Event.find(params[:event_id])
@@ -8,11 +10,20 @@ class CombosController < ApplicationController
       redirect_to @event
   	else
   		flash[:danger] = "Couldn't create the combo"
-  		render 'show'
+  		render 'events/show'
   	end
 	end
 
 	def update
+  	@combo = Combo.find(params[:id])
+  	@event = @combo.event
+  	if @combo.update_attributes(combo_params)
+      flash[:success] = "Combo updated!"
+      redirect_to @event
+  	else
+  		flash[:danger] = "Couldn't update the combo"
+  		render 'events/show'
+  	end
 	end
 
 	def destroy
@@ -35,6 +46,22 @@ class CombosController < ApplicationController
 		    :max_age,
 		    :gender,
 		    :stock)
+		end
+
+		def account_is_owner
+			if (event_id = params[:event_id]).nil?
+				combo = Combo.find(params[:id])
+				event = combo.event unless combo.nil?
+			else
+				event = Event.find(event_id)
+			end
+
+			if event.nil?
+				flash[:danger] = 'Invalid data'
+				redirect_to root_url
+			else
+				account_is_owner? event.producer
+			end
 		end
 
 end

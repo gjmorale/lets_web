@@ -1,6 +1,6 @@
 <li>
   <%= link_to product.name, product %>
-  <% if current_account.admin? %>
+  <% if logged_in? and current_account.admin? %>
     | <%= link_to "delete", product, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
