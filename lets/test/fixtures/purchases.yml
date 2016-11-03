@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2016-11-03 16:46:06
+  qr: <%= 'A'*250 %>
+  price_paid: 1000
+  status: 1
+  offer: one
+
+two:
+  date: 2016-11-03 16:46:06
+  qr: <%= 'B'*250 %>
+  price_paid: 100
+  status: 2

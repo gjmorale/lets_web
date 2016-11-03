@@ -22,9 +22,9 @@ class ProducerTest < ActiveSupport::TestCase
   	assert_not @producer.valid?, "Can't be shorter than 2 characters"
   	@producer.name = "1-2_3 & 4 5"
   	assert @producer.valid?, "Can contain - _ & and whitespaces letters and numbers"
-	@producer.name = '@%$#)()!°|'
+	  @producer.name = '@%$#)()!°|'
   	assert_not @producer.valid?, "Can't contain any other character"
-	@producer.name = "Jhonn  Red"
+	  @producer.name = "Jhonn  Red"
   	assert_not @producer.valid?, "Can't contain consecutive white spaces"
   end
 

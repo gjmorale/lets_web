@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101164740) do
+ActiveRecord::Schema.define(version: 20161103164606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,17 @@ ActiveRecord::Schema.define(version: 20161101164740) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.datetime "date"
+    t.string   "qr"
+    t.integer  "price_paid"
+    t.integer  "status"
+    t.integer  "offer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_purchases_on_offer_id", using: :btree
+  end
+
   create_table "table_accounts_producers", force: :cascade do |t|
     t.string "account"
     t.string "producer"
@@ -140,4 +151,5 @@ ActiveRecord::Schema.define(version: 20161101164740) do
   add_foreign_key "offers", "products"
   add_foreign_key "prod_owners", "accounts"
   add_foreign_key "prod_owners", "producers"
+  add_foreign_key "purchases", "offers"
 end
