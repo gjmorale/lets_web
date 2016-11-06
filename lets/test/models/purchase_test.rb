@@ -6,6 +6,8 @@ class PurchaseTest < ActiveSupport::TestCase
   	@purchase = purchases :one
   	@user = users :one
   	@offer = offers :one
+    @client = users :client
+    @young_client = users :young_client
   end
 
   test "should be valid" do
@@ -55,4 +57,9 @@ class PurchaseTest < ActiveSupport::TestCase
   	@purchase.status = 2
   	assert @purchase.valid?, "Valid statuses should be accepted"
 	end
+
+  test "should generate purchases" do
+    purchase = Purchase.generate(@client, @offer)
+    assert_not purchase.nil?
+  end
 end

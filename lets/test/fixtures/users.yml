@@ -20,3 +20,26 @@ owner_of_producer_one:
   birth_date: 1990-07-14 17:32:39
   gender: 1
   social_id: 18949984-1
+
+client:
+  first_name: Paul
+  last_name: Lets
+  birth_date: 1990-07-14 17:32:39
+  gender: 1
+  social_id: 18390826-k
+
+
+old_client:
+  first_name: Mike
+  last_name: Lets
+  birth_date: 1980-07-14 17:32:39
+  gender: 1
+  social_id: 17703553-k
+
+
+young_client:
+  first_name: Berni
+  last_name: Lets
+  birth_date: 1996-07-14 17:32:39
+  gender: 2
+  social_id: 19081160-3

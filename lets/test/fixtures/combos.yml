@@ -20,3 +20,14 @@ two:
   max_age: 15
   gender: 1
   stock: 10
+
+combo_of_eu:
+  name: Happy Hour
+  description: Includes two drinks for the price of one
+  buyable_from: 2015-08-03 12:23:37
+  buyable_until: 2017-08-03 15:23:37
+  min_age: 23
+  max_age: 30
+  gender: 0
+  stock: 100
+  event: event_of_eu

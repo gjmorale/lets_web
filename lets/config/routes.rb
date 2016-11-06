@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   resources :products
 
 	root 'static_pages#landing'
-  get '/landing', to: 'static_pages#landing'
   get '/about', to: 'static_pages#about'
 
   get '/signup',  to: 'accounts#new'

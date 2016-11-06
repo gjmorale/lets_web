@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   before_validation :social_id_trimming
 
   has_one :account, inverse_of: :user, dependent: :destroy, autosave: true
+  has_many :admissions, dependent: :destroy
+  has_many :events, through: :admissions
+  has_many :purchases, dependent: :destroy, foreign_key: :buyer_id
 
   validates :first_name, 	presence: true, length:{maximum:50, minimum:2}
   validates :last_name, 	presence: true, length:{maximum:50, minimum:2}
@@ -20,6 +23,13 @@ class User < ActiveRecord::Base
 
   def full_name
     self.first_name + " " + self.last_name
+  end
+
+  def age
+    now = DateTime.now
+    age = now.year - self.birth_date.year
+    age -= 1 if(now.yday < self.birth_date.yday)
+    age
   end
 
   def toggle_admin toggle

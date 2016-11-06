@@ -6,6 +6,7 @@ one:
   price_paid: 1000
   status: 1
   offer: one
+  buyer: two
 
 two:
   date: 2016-11-03 16:46:06

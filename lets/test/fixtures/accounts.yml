@@ -15,3 +15,18 @@ owner_of_producer_one:
   email: mail@tres.com
   password_digest: <%= Account.digest("password") %>
   user: owner_of_producer_one
+
+client:
+  email: mail@cuatro.com
+  password_digest: <%= Account.digest("password") %>
+  user: client
+
+young_client:
+  email: mail@cinco.com
+  password_digest: <%= Account.digest("password") %>
+  user: young_client
+
+old_client:
+  email: mail@seis.com
+  password_digest: <%= Account.digest("password") %>
+  user: old_client

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AdmissionTest < ActiveSupport::TestCase
   def setup
-  	@admission = Admission.new(status: 1)
+  	@admission = admissions :one
   end
 
   test "should be valid" do

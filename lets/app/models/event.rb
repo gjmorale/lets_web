@@ -2,6 +2,8 @@ class Event < ApplicationRecord
 
 	belongs_to :producer
   has_many :combos, dependent: :destroy
+  has_many :admissions, dependent: :destroy
+  has_many :users, through: :admissions
 
 	validates :name,				presence: true, length:{maximum: 50, minimum: 5}
 	validates :description,	presence: true, length:{maximum: 250, minimum: 10}

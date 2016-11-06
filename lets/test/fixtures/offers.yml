@@ -12,3 +12,19 @@ two:
   redeem_start: 2016-11-01 16:33:58
   redeem_finish: 2016-11-01 16:33:58
   product: two
+
+
+offer_of_eu_one:
+  price: 1500
+  redeem_start: 2015-11-01 16:33:58
+  redeem_finish: 2017-11-01 16:33:58
+  combo: combo_of_eu
+  product: product_of_eu
+
+
+offer_of_eu_two:
+  price: 1500
+  redeem_start: 2015-11-01 16:33:58
+  redeem_finish: 2017-11-01 16:33:58
+  combo: combo_of_eu
+  product: product_of_eu

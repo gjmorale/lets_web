@@ -2,7 +2,10 @@ require 'test_helper'
 
 class ComboTest < ActiveSupport::TestCase
   def setup
-  	@combo = combos :one
+    @client = users :client
+    @young_client = users :young_client
+    @old_client = users :old_client
+  	@combo = combos :combo_of_eu
   end
 
   test "should be valid" do
@@ -97,7 +100,24 @@ class ComboTest < ActiveSupport::TestCase
   	assert_not @combo.valid?, "Stock can't be grater than 1.000.000"
   	@combo.stock = 10000
   	assert @combo.valid?, "Valid stocks must be accepted"
+  end
 
+  test "should check buyability" do
+    assert_difference '@client.purchases.count', 2 do
+      assert_difference '@combo.stock', -1 do
+        assert @combo.buy @client
+      end
+    end
+    assert_no_difference '@young_client.purchases.count' do
+      assert_no_difference '@combo.stock' do
+        assert_not @combo.buy @young_client
+      end
+    end
+    assert_no_difference '@old_client.purchases.count' do
+      assert_no_difference '@combo.stock' do
+        assert_not @combo.buy @old_client
+      end
+    end
   end
 
 end

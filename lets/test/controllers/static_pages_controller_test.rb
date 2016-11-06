@@ -12,7 +12,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get landing" do
-    get landing_url
+    get root_url
     assert_response :success
     assert_select "title", "#{@base_title} Welcome"
   end

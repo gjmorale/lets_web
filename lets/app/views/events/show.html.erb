@@ -10,6 +10,10 @@
 	closes: <%= @event.close_date %>
 </p>
 
+<ul>
+	<%= @event.combos %>
+</ul>
+
 <% if is_owner?(@event.producer) %>
   <%= link_to "Edit", edit_event_path(@event) %> | 
   <%= link_to "Delete", @event, method: :delete,

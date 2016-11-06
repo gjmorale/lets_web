@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103164606) do
+ActiveRecord::Schema.define(version: 20161104154154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 20161103164606) do
     t.integer  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.index ["event_id"], name: "index_admissions_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_admissions_on_user_id", using: :btree
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -125,6 +129,8 @@ ActiveRecord::Schema.define(version: 20161103164606) do
     t.integer  "offer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "buyer_id"
+    t.index ["buyer_id"], name: "index_purchases_on_buyer_id", using: :btree
     t.index ["offer_id"], name: "index_purchases_on_offer_id", using: :btree
   end
 
@@ -145,6 +151,8 @@ ActiveRecord::Schema.define(version: 20161103164606) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "admissions", "events"
+  add_foreign_key "admissions", "users"
   add_foreign_key "combos", "events"
   add_foreign_key "events", "producers"
   add_foreign_key "offers", "combos"
@@ -152,4 +160,5 @@ ActiveRecord::Schema.define(version: 20161103164606) do
   add_foreign_key "prod_owners", "accounts"
   add_foreign_key "prod_owners", "producers"
   add_foreign_key "purchases", "offers"
+  add_foreign_key "purchases", "users", column: "buyer_id"
 end

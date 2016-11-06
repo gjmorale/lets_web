@@ -11,3 +11,10 @@ two:
   description: This is the second product
   min_age: 15
   product_type: 1
+
+
+product_of_eu:
+  name: EU Drink
+  description: This chilean drink contains pisco and coke
+  min_age: 18
+  product_type: 1
