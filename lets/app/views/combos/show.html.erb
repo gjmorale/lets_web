@@ -1,0 +1,48 @@
+<% provide(:title, @combo.name) %>
+<h1><%= @combo.name %></h1>
+<h2><%= link_to @combo.event.name, @combo.event %></h2>
+<p><%= @combo.description %></p>
+<p>Available from 
+	<%= @combo.buyable_from.strftime("%m/%d/%y %I:%M%p") %> to 
+	<%= @combo.buyable_until.strftime("%m/%d/%y %I:%M%p") %>
+</p>
+
+<ul>
+	<%= render @combo.offers %>
+</ul>
+
+<% if logged_in? and is_owner? @combo.event.producer %>
+	<%= form_for [@combo, @offer] do |f| %>
+
+	 	<% @object_with_errors = @offer %>
+		<%= render 'shared/error_messages' %>
+
+	  <%= f.label :price %>
+	  <%= f.number_field :price %>
+
+	  <%= f.label :redeem_start %>
+	  <%= f.datetime_select :redeem_start %>
+
+	  <%= f.label :redeem_finish %>
+	  <%= f.datetime_select :redeem_finish %>
+
+		<%= f.label :product_id %><br />
+  	<%= f.select :product_id, options_for_select(Product.all.map{|s|[s.name, s.id]}) %>
+
+	  <%= f.submit "Add" %>
+	<% end %>
+<% end %>
+
+<p>Buy <%= link_to "$#{@combo.price}", combo_purchases_path(@combo), method: :post,
+                                data: { confirm: "You sure?" }  %>
+</p>
+
+<ul>
+	<% unless @errors.nil? %>
+		<% @errors.each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+	<% end %>
+</ul>
+
+<p>Find me in app/views/combos/show.html.erb</p>

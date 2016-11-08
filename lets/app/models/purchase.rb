@@ -25,6 +25,10 @@ class Purchase < ApplicationRecord
 		self.qr = 'A'*250
 	end
 
+	def reinburse
+		#TODO: give back part of the money
+	end
+
 	private
 
 end

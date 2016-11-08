@@ -70,19 +70,22 @@ class Combo < ApplicationRecord
   	def check user
   		reset_errors
 	  	set_error "This item is out of stock" unless stock_validation
-	  	set_error "Item not available for #{gender(user.gender).pluralize}" unless gender_validation user.gender
+	  	set_error "Item not available for #{user.public_gender.pluralize}" unless gender_validation user.gender
 	  	set_error "Needs to be older than #{self.min_age} years old" unless min_age_validation user.age
 	  	set_error "Needs to be younger than #{self.max_age} years old" unless max_age_validation user.age
 	  	set_error "This item is not yet available" unless buyable_from_validation
 	  	set_error "This item is no longer available" unless buyable_until_validation
 	  	self.offers.each do |offer|
-	  		set_error offer.buyable user 
+	  		errors = offer.buyable user 
+	  		errors.each do |error|
+	  			set_error error 
+	  		end
 	  	end
   	end
 
   	def check! user
 	  	set_exception "This item is out of stock" unless stock_validation
-	  	set_exception "Item not available for #{gender(user.gender).pluralize}" unless gender_validation user.gender
+	  	set_exception "Item not available for #{user.public_gender.pluralize}" unless gender_validation user.gender
 	  	set_exception "Needs to be older than #{self.min_age} years old" unless min_age_validation user.age
 	  	set_exception "Needs to be younger than #{self.max_age} years old" unless max_age_validation user.age
 	  	set_exception "This item is not yet available" unless buyable_from_validation

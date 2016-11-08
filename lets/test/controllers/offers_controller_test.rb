@@ -33,11 +33,11 @@ class OffersControllerTest < ActionDispatch::IntegrationTest
     @offer.price = -10
   	post combo_offers_url @combo, hashed_offer(@offer)
     assert_not flash[:danger].nil?
-    assert_template 'events/show'
+    assert_template 'combos/show'
     #Case OWNER SUCCESS
     log_in_as @owner
   	post combo_offers_url @combo, hashed_offer(@new_offer)
-    assert_redirected_to event_url @event
+    assert_redirected_to combo_url @combo
     assert_not flash[:success].nil?
   end
 
@@ -60,7 +60,7 @@ class OffersControllerTest < ActionDispatch::IntegrationTest
     @offer.price = -10
     patch offer_url @offer, hashed_offer(@offer)
     assert_not flash[:danger].nil?
-    assert_template 'events/show'
+    assert_template 'combos/show'
     #Case OWNER SUCCESS
     @offer.reload
     patch offer_url @offer, hashed_offer(@offer)

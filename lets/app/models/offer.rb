@@ -1,4 +1,6 @@
 class Offer < ApplicationRecord
+  before_create :validate_product
+
   belongs_to :combo
   belongs_to :product
   has_many :purchases, dependent: :nullify
@@ -39,7 +41,7 @@ class Offer < ApplicationRecord
     end
 
     def set_error msg
-      unless msg.emty?
+      unless msg.empty?
         @errors << msg
       end
     end
@@ -58,6 +60,10 @@ class Offer < ApplicationRecord
 
     def min_age_validation age
       self.product.min_age <= age
+    end
+
+    def validate_product
+      errors.add(:product_id, :blank, message: "Must have a product") if self.product_id.nil?
     end
 
 end

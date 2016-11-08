@@ -61,7 +61,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     log_in_as @owner
     delete event_url @event
     follow_redirect!
-    assert_template "events/index"
+    assert_template "events/index_producer"
   end
 
   test "should redirect when not logged in" do
@@ -81,6 +81,10 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     patch event_path @event, hashed_event(@event)
     assert_not flash.empty?
     assert_redirected_to login_url
+    #Case DESTROY
+    delete event_url @event
+    assert_not flash.empty?
+    assert_redirected_to login_url
   end
 
   test "should redirect when not logged in as owner" do
@@ -98,6 +102,10 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
     #Case CREATE
     post producer_events_path @producer, hashed_event(@new_event)
+    assert_redirected_to root_url
+    #Case DESTROY
+    delete event_url @event
+    assert_not flash.empty?
     assert_redirected_to root_url
   end
 

@@ -7,6 +7,7 @@ class EventsManipulationTest < ActionDispatch::IntegrationTest
   	@owner = accounts :owner_of_producer_one
   	@not_owner = accounts :two
   	@event = events :one
+    @combo = combos :one
   	@new_event = events :two
   end
 
@@ -20,6 +21,15 @@ class EventsManipulationTest < ActionDispatch::IntegrationTest
       open_date: event.open_date, 
       close_date: event.close_date
     }}}
+  end
+
+  test "should be valid" do
+    assert @producer.valid?
+    assert @owner.valid?
+    assert @not_owner.valid?
+    assert @event.valid?
+    assert @combo.valid?
+    assert_not @new_event.valid?
   end
 
   test "non admin/owners can't create events" do
@@ -51,7 +61,7 @@ class EventsManipulationTest < ActionDispatch::IntegrationTest
 			delete event_path event_to_delete
 			follow_redirect!
 			assert_not flash.empty?
-	    assert_template 'events/index'
+	    assert_template 'events/index_producer'
 			@producer.reload
 		end
   end

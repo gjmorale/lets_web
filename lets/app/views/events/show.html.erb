@@ -11,10 +11,11 @@
 </p>
 
 <ul>
-	<%= @event.combos %>
+	<%= render @event.combos %>
 </ul>
 
 <% if is_owner?(@event.producer) %>
+	<p><%= link_to "New Combo", new_event_combo_path(@event) %></p>
   <%= link_to "Edit", edit_event_path(@event) %> | 
   <%= link_to "Delete", @event, method: :delete,
                                 data: { confirm: "You sure?" } %>

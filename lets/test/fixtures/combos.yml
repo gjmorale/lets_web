@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Event One
-  description: This is the event number one
+  name: Combo One
+  description: This is the combo number one
   buyable_from: 2015-08-03 13:23:37
   buyable_until: 2015-08-03 15:23:37
   min_age: 18
@@ -12,8 +12,8 @@ one:
   event: one
 
 two:
-  name: Event Two
-  description: This is the event number two
+  name: Combo Two
+  description: This is the combo number two
   buyable_from: 2016-08-03 12:23:37
   buyable_until: 2016-08-03 15:23:37
   min_age: 14
@@ -28,6 +28,17 @@ combo_of_eu:
   buyable_until: 2017-08-03 15:23:37
   min_age: 23
   max_age: 30
+  gender: 0
+  stock: 100
+  event: event_of_eu
+
+young_combo_of_eu:
+  name: Underage Hour
+  description: Includes a virgin drink
+  buyable_from: 2015-08-03 12:23:37
+  buyable_until: 2017-08-03 15:23:37
+  min_age: 14
+  max_age: 22
   gender: 0
   stock: 100
   event: event_of_eu

@@ -13,3 +13,11 @@ two:
   qr: <%= 'B'*250 %>
   price_paid: 100
   status: 2
+
+young_purchase:
+  date: 2016-11-03 16:46:06
+  qr: <%= 'C'*250 %>
+  price_paid: 1000
+  status: 1
+  offer: young_offer_of_eu
+  buyer: young_client

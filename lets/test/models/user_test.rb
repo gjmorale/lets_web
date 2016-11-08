@@ -20,9 +20,9 @@ class UserTest < ActiveSupport::TestCase
   	assert_not @user.valid?, "Can't be shorter than 2 characters"
   	@user.first_name = "123"
   	assert_not @user.valid?, "Can't contain non alphabetical characters"
-	@user.first_name = "Jhonn Slick Red"
+    @user.first_name = "Jhonn Slick Red"
   	assert @user.valid?, "Can contain non consecutive white spaces"
-	@user.first_name = "Jhonn  Red"
+    @user.first_name = "Jhonn  Red"
   	assert_not @user.valid?, "Can't contain consecutive white spaces"
   end
 
@@ -35,9 +35,9 @@ class UserTest < ActiveSupport::TestCase
   	assert_not @user.valid?, "Can't be shorter than 2 characters"
   	@user.last_name = "123"
   	assert_not @user.valid?, "Can't contain non alphabetical characters"
-	@user.last_name = "Jhonn Slick Red"
+	  @user.last_name = "Jhonn Slick Red"
   	assert @user.valid?, "Can contain non consecutive white spaces"
-	@user.last_name = "Jhonn  Red"
+	  @user.last_name = "Jhonn  Red"
   	assert_not @user.valid?, "Can't contain consecutive white spaces"
   end
 

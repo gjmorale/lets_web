@@ -17,8 +17,13 @@ class EventsController < ApplicationController
   end
 
   def index
-  	@producer = Producer.find(params[:producer_id])
-  	@events = @producer.events
+  	if params[:producer_id]
+      @producer = Producer.find(params[:producer_id])
+      @events = @producer.events
+      render 'events/index_producer'
+    else
+      @events = Event.paginate(page: params[:page])
+    end
   end
 
   def create

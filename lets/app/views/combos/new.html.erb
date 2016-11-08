@@ -1,0 +1,32 @@
+<% provide :title, "New Combo"%>
+<h1><%= @event.name %>'s new combo</h1>
+<%= form_for [@event, @combo] do |f| %>
+ 	<% @object_with_errors = @combo %>
+	<%= render 'shared/error_messages' %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :min_age %>
+  <%= f.number_field :min_age %>
+
+  <%= f.label :max_age %>
+  <%= f.number_field :max_age %>
+
+  <%= f.label :gender %>
+  <%= f.number_field :gender %>
+
+  <%= f.label :stock %>
+  <%= f.number_field :stock %>
+
+  <%= f.label :buyable_from %>
+  <%= f.date_select :buyable_from %>
+
+  <%= f.label :buyable_until %>
+  <%= f.date_select :buyable_until %>
+
+  <%= f.submit "Create" %>
+<% end %>

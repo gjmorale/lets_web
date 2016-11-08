@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ModelUserBuysProductTest < ActionDispatch::IntegrationTest
+class UserBuysProductTest < ActionDispatch::IntegrationTest
   def setup
   	@user = users :client
   	@event = events :event_of_eu

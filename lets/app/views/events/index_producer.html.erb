@@ -1,0 +1,12 @@
+<% provide(:title, "#{@producer.fantasy_name}'s events") %>
+<h1><%= @producer.fantasy_name %>'s events</h1>
+
+<ul>
+  <%= render @events %>
+</ul>
+<% if logged_in? and is_owner? @producer %>
+	<%= link_to "New Event", new_producer_event_path(@producer) %>
+<% end %>
+
+<p>Find me in app/views/events/index.html.erb</p>
+

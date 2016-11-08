@@ -28,3 +28,13 @@ event_of_eu:
   open_date: <%= DateTime.parse("2016-10-15 10:10:10").to_s(:db) %> 
   close_date: <%= DateTime.parse("2016-10-25 16:10:10").to_s(:db) %>
   producer: eu
+
+young_event_of_eu:
+  name: "Underage Monday"
+  description: "Events Unlimited presents your underage choice"
+  capacity: 700
+  min_age: 14
+  max_age: 22 
+  open_date: <%= DateTime.parse("2016-10-15 10:10:10").to_s(:db) %> 
+  close_date: <%= DateTime.parse("2016-10-25 16:10:10").to_s(:db) %>
+  producer: eu

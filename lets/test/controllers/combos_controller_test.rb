@@ -36,7 +36,7 @@ class CombosControllerTest < ActionDispatch::IntegrationTest
     @combo.stock = -10
     post event_combos_url @event, hashed_combo(@combo)
     assert_not flash[:danger].nil?
-    assert_template 'events/show'
+    assert_template 'combos/new'
     #Case OWNER SUCCESS
     log_in_as @owner
     post event_combos_url @event, hashed_combo(@new_combo)
@@ -73,8 +73,8 @@ class CombosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get destroy" do
-  	#Case NOT LOGGED IN
-  	delete combo_url @combo
+    #Case NOT LOGGED IN
+    delete combo_url @combo
     assert_redirected_to login_url
     #Case NOT OWNER
     log_in_as @not_owner
@@ -90,5 +90,29 @@ class CombosControllerTest < ActionDispatch::IntegrationTest
     delete combo_url @combo
     assert_redirected_to event_url @event
     assert_not flash[:success].nil?
+  end
+
+  test "should get new" do
+    #Case NOT LOGGED IN
+    get new_event_combo_url @event
+    assert_redirected_to login_url
+    #Case NOT OWNER
+    log_in_as @not_owner
+    get new_event_combo_url @event
+    assert_redirected_to root_url
+    #Case OWNER SUCCESS
+    log_in_as @owner
+    get new_event_combo_url @event
+    assert_template 'combos/new'
+  end
+
+  test "should get show" do
+    #Case NOT LOGGED IN
+    get combo_url @combo
+    assert_redirected_to login_url
+    #Case OWNER SUCCESS
+    log_in_as @owner
+    get combo_url @combo
+    assert_template 'combos/show'
   end
 end

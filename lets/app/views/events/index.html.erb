@@ -1,11 +1,9 @@
 <% provide(:title, 'Events') %>
-<h1><%= @producer.fantasy_name %> event's</h1>
+<h1>Events</h1>
 
 <ul>
   <%= render @events %>
 </ul>
-
-<%= link_to "New Event", new_producer_event_path(@producer) %>
 
 <p>Find me in app/views/events/index.html.erb</p>
 

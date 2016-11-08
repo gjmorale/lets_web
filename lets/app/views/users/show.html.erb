@@ -6,7 +6,13 @@
 <p><%= @user.public_gender %></p>
 <p><%= @user.birth_date %></p>
 
+<h2>Producers</h2>
 <ul>
 	<%= render @user.account.producers %>
+</ul>
+
+<h2>Purchases</h2>
+<ul>
+	<%= render @user.purchases %>
 </ul>
  

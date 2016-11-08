@@ -4,26 +4,26 @@ class OffersController < ApplicationController
 
 	def create
   	@combo = Combo.find(params[:combo_id])
-  	@event = @combo.event
   	@offer = @combo.offers.create(offer_params)
   	if @combo.save
       flash[:success] = "New offer created!"
-      redirect_to @event
+      redirect_to @combo
   	else
   		flash[:danger] = "Couldn't create the offer"
-  		render 'events/show'
+  		render 'combos/show'
   	end
 	end
 
 	def update
   	@offer = Offer.find(params[:id])
-  	@event = @offer.combo.event
+  	@combo = @offer.combo
   	if @offer.update_attributes(offer_params)
       flash[:success] = "Offer updated!"
-      redirect_to @event
+      redirect_to @combo.event
   	else
+  		@offer = Offer.new()
   		flash[:danger] = "Couldn't update offer"
-  		render 'events/show'
+  		render 'combos/show'
   	end
 	end
 

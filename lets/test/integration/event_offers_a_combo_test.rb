@@ -100,7 +100,7 @@ class EventOffersAComboTest < ActionDispatch::IntegrationTest
 		assert_difference 'old_combo.offers.count', 1 do
 			post combo_offers_path old_combo, hashed_offer(@new_offer)
 			follow_redirect!
-			assert_template 'events/show'
+			assert_template 'combos/show'
 			old_combo.reload
 		end
 		offer = old_combo.offers.find_by product_id: @new_offer.product_id

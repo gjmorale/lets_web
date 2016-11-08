@@ -1,6 +1,16 @@
 class CombosController < ApplicationController
-  before_action :logged_in_account, only: [:create, :update, :destroy]
-  before_action :account_is_owner, only: [:create, :update, :destroy]
+  before_action :logged_in_account, only: [:show, :new, :create, :update, :destroy]
+  before_action :account_is_owner, only: [:new, :create, :update, :destroy]
+
+  def show
+  	@combo = Combo.find(params[:id])
+  	@offer = Offer.new()
+  end
+
+  def new
+  	@event = Event.find(params[:event_id])
+  	@combo = Combo.new()
+  end
 
 	def create
   	@event = Event.find(params[:event_id])
@@ -10,7 +20,7 @@ class CombosController < ApplicationController
       redirect_to @event
   	else
   		flash[:danger] = "Couldn't create the combo"
-  		render 'events/show'
+  		render 'new'
   	end
 	end
 

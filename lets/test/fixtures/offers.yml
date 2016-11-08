@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  price: 1
+  price: 100
   redeem_start: 2016-11-01 16:33:58
   redeem_finish: 2016-11-01 16:33:58
   combo: one
   product: one
 
 two:
-  price: 1
+  price: 1000
   redeem_start: 2016-11-01 16:33:58
   redeem_finish: 2016-11-01 16:33:58
   product: two
@@ -28,3 +28,11 @@ offer_of_eu_two:
   redeem_finish: 2017-11-01 16:33:58
   combo: combo_of_eu
   product: product_of_eu
+
+
+young_offer_of_eu:
+  price: 1500
+  redeem_start: 2015-11-01 16:33:58
+  redeem_finish: 2017-11-01 16:33:58
+  combo: young_combo_of_eu
+  product: young_product_of_eu

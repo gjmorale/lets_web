@@ -1,3 +1,7 @@
 <li>
-	<p><%= offer.product.name %></p>
+	<p>
+		<%= link_to offer.product.name, offer.product %> | 
+		$<%= offer.price %> | 
+		From <%= offer.redeem_start.strftime("%m/%d/%y %I:%M%p") %> to <%= offer.redeem_finish.strftime("%m/%d/%y %I:%M%p") %>
+		</p>
 </li>

@@ -18,3 +18,9 @@ product_of_eu:
   description: This chilean drink contains pisco and coke
   min_age: 18
   product_type: 1
+
+young_product_of_eu:
+  name: EU Virgin Drink
+  description: This chilean drink coke
+  min_age: 14
+  product_type: 1
