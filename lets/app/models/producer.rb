@@ -4,6 +4,7 @@ class Producer < ApplicationRecord
   has_many :prod_owners, dependent: :destroy
 	has_many :owners, through: :prod_owners, source: :account
 	has_many :events, autosave: true
+	has_many :levels, dependent: :destroy
 
 	validates :name,			presence: true, length:{maximum: 250, minimum: 2}
 	validates :fantasy_name,	presence: true, length:{maximum: 75, minimum: 3}

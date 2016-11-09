@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       delete '/admin',   to: 'admins#destroy'
     end
     resources :purchases, only: [:index]
+    resources :events, only: [:index]
   end
   resources :producers do
     resources :prod_owners, only: [:create] 

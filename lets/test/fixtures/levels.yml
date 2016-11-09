@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: client
-  event: event_of_eu
-  status: 1
+  name: MyString
+  order: 1
+  producer: one
 
 two:
-  user: two
-  event: one
-  status: 1
+  name: MyString
+  order: 1
+  producer: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104154154) do
+ActiveRecord::Schema.define(version: 20161108153159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,16 @@ ActiveRecord::Schema.define(version: 20161104154154) do
 
   create_table "admissions", force: :cascade do |t|
     t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "user_id"
     t.integer  "event_id"
+    t.integer  "actual_level_id"
+    t.integer  "guest_level_id"
+    t.index ["actual_level_id"], name: "index_admissions_on_actual_level_id", using: :btree
     t.index ["event_id"], name: "index_admissions_on_event_id", using: :btree
+    t.index ["guest_level_id"], name: "index_admissions_on_guest_level_id", using: :btree
+    t.index ["user_id", "event_id"], name: "index_admissions_on_user_id_and_event_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_admissions_on_user_id", using: :btree
   end
 
@@ -74,6 +79,15 @@ ActiveRecord::Schema.define(version: 20161104154154) do
     t.index ["producer_id"], name: "index_events_on_producer_id", using: :btree
   end
 
+  create_table "levels", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "order"
+    t.integer  "producer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["producer_id"], name: "index_levels_on_producer_id", using: :btree
+  end
+
   create_table "offers", force: :cascade do |t|
     t.integer  "price"
     t.datetime "redeem_start"
@@ -110,8 +124,12 @@ ActiveRecord::Schema.define(version: 20161104154154) do
     t.string   "description"
     t.integer  "min_age"
     t.integer  "product_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "provided_level_id"
+    t.integer  "required_level_id"
+    t.index ["provided_level_id"], name: "index_products_on_provided_level_id", using: :btree
+    t.index ["required_level_id"], name: "index_products_on_required_level_id", using: :btree
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -152,13 +170,18 @@ ActiveRecord::Schema.define(version: 20161104154154) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "admissions", "events"
+  add_foreign_key "admissions", "levels", column: "actual_level_id"
+  add_foreign_key "admissions", "levels", column: "guest_level_id"
   add_foreign_key "admissions", "users"
   add_foreign_key "combos", "events"
   add_foreign_key "events", "producers"
+  add_foreign_key "levels", "producers"
   add_foreign_key "offers", "combos"
   add_foreign_key "offers", "products"
   add_foreign_key "prod_owners", "accounts"
   add_foreign_key "prod_owners", "producers"
+  add_foreign_key "products", "levels", column: "provided_level_id"
+  add_foreign_key "products", "levels", column: "required_level_id"
   add_foreign_key "purchases", "offers"
   add_foreign_key "purchases", "users", column: "buyer_id"
 end

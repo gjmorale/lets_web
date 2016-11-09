@@ -17,14 +17,18 @@ class Offer < ApplicationRecord
   def buy user
     check! user
     Purchase.generate(user, self)
+    event = self.combo.event
+    admission = Admission.new(user: user, event: event) unless admission = Admission.where(user: user, event: event).take
+    admission.actual_level = provided_level if Level.compare(admission.actual_level, provided_level)
+    admission.save!
   end
 
   def required_level
-    1
+    product.required_level
   end
 
   def provided_level
-    2
+    product.provided_level
   end
 
   private

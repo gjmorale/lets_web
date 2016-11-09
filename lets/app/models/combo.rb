@@ -36,12 +36,9 @@ class Combo < ApplicationRecord
   def buy user
   	ActiveRecord::Base.transaction do
 	  	check! user
+	  	set_exception "Requires higher level" if not check_levels user
 			self.offers.each do |offer|
-				if offer.required_level <= self.level_provided
-					offer.buy user
-				else
-					set_exception "Requires higher VIP level"
-				end
+				offer.buy user
 			end
 			self.lock!
 			if self.stock > 0
@@ -52,17 +49,23 @@ class Combo < ApplicationRecord
 			end
 		end
 		true
-	rescue Exceptions::ComboRestrictionsException
+	rescue Exceptions::ComboRestrictionsException => error
+		#Debugging purposes only
+		#puts "!!!--- #{error.message} ---!!!"
 		false
   end
 
-  def level_provided
-  	max = nil
+  def check_levels user
+  	max_required = nil
+  	admission = Admission.find_by(user: user, event: self.event)
+  	max_provided = admission.access_level
   	self.offers.each do |offer|
-  		level = offer.provided_level
-  		max = level if max.nil? or max < level
+  		provided_level = offer.provided_level
+  		required_level = offer.required_level
+  		max_required = required_level if Level.compare(max_required, required_level)
+  		max_provided = provided_level if Level.compare(max_provided, provided_level)
   	end
-  	max
+  	not Level.compare(max_provided, max_required)
   end
 
   private

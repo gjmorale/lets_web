@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
 
 	has_many :offers, dependent: :destroy
+	belongs_to :required_level, class_name: 'Level', optional: true
+	belongs_to :provided_level, class_name: 'Level', optional: true 
 
 	validates :name,		 					presence: true, length:{maximum: 50, minimum: 5}
 	validates :description,	 			presence: true, length:{maximum: 250, minimum: 10}

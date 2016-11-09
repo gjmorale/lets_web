@@ -18,12 +18,14 @@ class EventsController < ApplicationController
 
   def index
   	if params[:producer_id]
-      @producer = Producer.find(params[:producer_id])
-      @events = @producer.events
-      render 'events/index_producer'
-    else
-      @events = Event.paginate(page: params[:page])
+      index_producer
+      return
     end
+    if params[:user_id]
+      index_user
+      return
+    end
+    index_regular
   end
 
   def create
@@ -80,4 +82,20 @@ class EventsController < ApplicationController
       end
   		account_is_owner? producer
   	end
+
+    def index_producer
+      @producer = Producer.find(params[:producer_id])
+      @events = @producer.events
+      render 'events/index_producer'
+    end
+
+    def index_user
+      @user = User.find(params[:user_id])
+      @events = @user.events
+      render 'events/index_user'
+    end
+
+    def index_regular
+      @events = Event.paginate(page: params[:page])
+    end
 end
