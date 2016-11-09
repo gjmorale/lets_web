@@ -1,12 +1,12 @@
 <li>
-  <%= link_to event.name, event %>
-  <p><%= event.description %></p>
+  <h5><%= link_to "#{event.name}: ", event %><h5>
+  <span><%= event.description %></span>
   <p>
   	capacity: <%= event.capacity %> |
   	min age: <%= event.min_age %> |
   	max age: <%= event.max_age %> |
-  	opens: <%= event.open_date %> |
-  	closes: <%= event.close_date %>
+  	opens: <%= event.open_date.strftime("%m/%d/%y") %> |
+  	closes: <%= event.close_date.strftime("%m/%d/%y") %>
   </p>
 
   <% if is_owner?(event.producer) %>

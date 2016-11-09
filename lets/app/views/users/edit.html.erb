@@ -12,13 +12,13 @@
     <%= f.text_field :last_name, class: 'form-control' %>
 
 	  <%= f.label :social_id %>
-	  <%= f.text_field :social_id %>
+	  <%= f.text_field :social_id, class: 'form-control' %>
 
 	  <%= f.label :birth_date %>
-	  <%= f.date_select :birth_date, start_year: 1950, end_year: Date.today.year %>
+	  <%= f.date_select :birth_date, start_year: 1950, end_year: Date.today.year, class: 'form-control' %>
 
 	  <%= f.label :gender %>
-	  <%= f.select :gender, [['Hombre', 0], ['Mujer', 1]] %>
+	  <%= f.select :gender, [['Hombre', 0], ['Mujer', 1]], class: 'form-control' %>
 
     <%= f.submit "Save changes", class: "btn btn-primary" %>
   <% end %>

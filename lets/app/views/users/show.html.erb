@@ -1,17 +1,17 @@
 <% provide(:title, @user.first_name) %>
-<h1>
+<h3>
 <%= @user.first_name %> <%= @user.last_name %>
-</h1>
-<h2><%= @user.social_id %></h2>
+</h3>
+<h4><%= @user.social_id %></h4>
 <p><%= @user.public_gender %></p>
-<p><%= @user.birth_date %></p>
+<p>Born <%= @user.birthday %></p>
 
-<h2>Producers</h2>
+<h4>Producers</h4>
 <ul>
 	<%= render @user.account.producers %>
 </ul>
 
-<h2>Purchases</h2>
+<h4>Purchases</h4>
 <ul>
 	<%= render @user.purchases %>
 </ul>

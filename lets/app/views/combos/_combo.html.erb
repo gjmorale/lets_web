@@ -1,5 +1,5 @@
 <li>
-	<h2><%= link_to combo.name, combo_path(combo.id) %>: <%= combo.price %></h2>
+	<h5><%= link_to combo.name, combo_path(combo.id) %>: <%= combo.price %></h5>
 	<p><%= combo.description %></p>
 	<ul>
 		<%= render combo.offers %>

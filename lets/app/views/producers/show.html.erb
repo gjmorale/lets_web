@@ -1,26 +1,31 @@
 <% provide(:title, @producer.name) %>
 
 <h1><%= @producer.fantasy_name %></h1>
-<h2><%= @producer.name %></h2>
+<h3><%= @producer.name %></h3>
 <p><%= @producer.social_id %></p>
 
-<%= link_to "Events", producer_events_path(@producer) %>
+<h4><%= link_to "Events", producer_events_path(@producer) %><h4>
 
+<h4> Owners </h4>
 <ul>
   <%= render @producer.prod_owners %>
 </ul>
 
 <% if is_owner? @producer %>
-	<h2>Add a new owner</h2>
+	<div class="row">
+	  <div class="col-md-6 col-md-offset-3">
+			<h3>Add a new owner</h3>
 
-	<%= form_for [@producer, @prod_owner] do |f| %>
+			<%= form_for [@producer, @prod_owner] do |f| %>
 
-		<%= f.label :account_id %><br />
-  	<%= f.select :account_id, options_for_select(Account.all.map{|s|[s.user.full_name, s.id]}) %>
+				<%= f.label :account_id %><br />
+		  	<%= f.select :account_id, options_for_select(Account.all.map{|s|[s.user.full_name, s.id]}), class: 'form-control' %>
 
-		<%= f.label :role %>
-    <%= f.text_field :role %>
+				<%= f.label :role %>
+		    <%= f.text_field :role, class: 'form-control' %>
 
-	  <%= f.submit "Save changes" %>
-	<% end %>
+			  <%= f.submit "Save changes", class: 'btn btn-primary' %>
+			<% end %>
+		</div>
+	</div>
 <% end %>

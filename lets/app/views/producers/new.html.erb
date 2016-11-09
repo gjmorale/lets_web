@@ -5,13 +5,13 @@
 	<%= render 'shared/error_messages' %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :fantasy_name %>
-  <%= f.text_field :fantasy_name %>
+  <%= f.text_field :fantasy_name, class: 'form-control' %>
 
   <%= f.label :social_id %>
-  <%= f.text_field :social_id %>
+  <%= f.text_field :social_id, class: 'form-control' %>
 
-  <%= f.submit "Create", class: "" %>
+  <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>

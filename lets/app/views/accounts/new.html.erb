@@ -1,36 +1,41 @@
 <% provide :title, "Sign Up"%>
 <h1>Accounts#new</h1>
-<%= form_for(@account, url: signup_path) do |f| %>
- 	<% @object_with_errors = @account %>
-	<%= render 'shared/error_messages' %>
 
-	<%= f.fields_for :user do |p| %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+		<%= form_for(@account, url: signup_path) do |f| %>
+		 	<% @object_with_errors = @account %>
+			<%= render 'shared/error_messages' %>
 
-	  <%= p.label :first_name %>
-	  <%= p.text_field :first_name %>
+			<%= f.fields_for :user do |p| %>
 
-	  <%= p.label :last_name %>
-	  <%= p.text_field :last_name %>
+			  <%= p.label :first_name %>
+			  <%= p.text_field :first_name, class: 'form-control' %>
 
-	  <%= p.label :social_id %>
-	  <%= p.text_field :social_id %>
+			  <%= p.label :last_name %>
+			  <%= p.text_field :last_name, class: 'form-control' %>
 
-	  <%= p.label :birth_date %>
-	  <%= p.date_select :birth_date, start_year: 1950, end_year: Date.today.year %>
+			  <%= p.label :social_id %>
+			  <%= p.text_field :social_id, class: 'form-control' %>
 
-	  <%= p.label :gender %>
-	  <%= p.select :gender, [['Hombre', 0], ['Mujer', 1]] %>
+			  <%= p.label :birth_date %>
+			  <%= p.date_select :birth_date, start_year: 1950, end_year: Date.today.year, class: 'form-control' %>
 
-	<% end %>
+			  <%= p.label :gender %>
+			  <%= p.select :gender, [['Hombre', 0], ['Mujer', 1]], class: 'form-control' %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+			<% end %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+		  <%= f.label :email %>
+		  <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password_confirmation, "Confirmation" %>
-  <%= f.password_field :password_confirmation %>
+		  <%= f.label :password %>
+		  <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.submit "Create", class: "" %>
+		  <%= f.label :password_confirmation, "Confirmation" %>
+		  <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+		  <%= f.submit "Create", class: "btn btn-primary" %>
+	  </div>
+  </div>
 <% end %>

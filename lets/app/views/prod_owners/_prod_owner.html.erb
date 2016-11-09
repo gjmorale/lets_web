@@ -1,14 +1,15 @@
 <li>
-  <%= link_to prod_owner.account.user.full_name, prod_owner.account.user %>
+  <h5><%= link_to prod_owner.account.user.full_name, prod_owner.account.user %></h5>
   <% if is_owner? prod_owner.producer %>
-  	| 
   	<%= form_for prod_owner do |f|%>
 	  	<%= f.label :role %>
-	    <%= f.text_field :role %>
-    <%= f.submit "Save changes" %>
-    <% end %>
+	    <%= f.text_field :role, class: 'input-short' %>
+    <%= f.submit "Save changes", class: 'btn btn-primary input-short' %>
     | <%= link_to "delete", prod_owner, 
-    															method: :delete,
-                                  data: { confirm: "You sure?" } %>
+                                  method: :delete,
+                                  data: { confirm: "You sure?" }, class: 'btn btn-primary input-short' %>
+    <% end %>
+  <% else %>
+    <p><%= prod_owner.role %></p>
   <% end %>
 </li>

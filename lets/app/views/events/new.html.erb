@@ -5,27 +5,27 @@
 	<%= render 'shared/error_messages' %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, class: 'form-control' %>
 
   <%= f.label :capacity %>
-  <%= f.number_field :capacity %>
+  <%= f.number_field :capacity, class: 'form-control' %>
 
   <%= f.label :min_age %>
-  <%= f.number_field :min_age %>
+  <%= f.number_field :min_age, class: 'form-control' %>
 
   <%= f.label :max_age %>
-  <%= f.number_field :max_age %>
+  <%= f.number_field :max_age, class: 'form-control' %>
 
   <%= f.label :open_date %>
-  <%= f.date_select :open_date %>
+  <%= f.date_select :open_date, class: 'form-control' %>
 
   <%= f.label :close_date %>
-  <%= f.date_select :close_date %>
+  <%= f.date_select :close_date, class: 'form-control' %>
 
-  <%= f.submit "Create", class: "" %>
+  <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
 
 <p>Find me in app/views/events/new.html.erb</p>

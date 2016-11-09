@@ -1,32 +1,32 @@
-<% provide :title, "New Combo"%>
+, class: 'form-control'<% provide :title, "New Combo"%>
 <h1><%= @event.name %>'s new combo</h1>
 <%= form_for [@event, @combo] do |f| %>
  	<% @object_with_errors = @combo %>
 	<%= render 'shared/error_messages' %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, class: 'form-control' %>
 
   <%= f.label :min_age %>
-  <%= f.number_field :min_age %>
+  <%= f.number_field :min_age, class: 'form-control' %>
 
   <%= f.label :max_age %>
-  <%= f.number_field :max_age %>
+  <%= f.number_field :max_age, class: 'form-control' %>
 
   <%= f.label :gender %>
-  <%= f.number_field :gender %>
+  <%= f.number_field :gender, class: 'form-control' %>
 
   <%= f.label :stock %>
-  <%= f.number_field :stock %>
+  <%= f.number_field :stock, class: 'form-control' %>
 
   <%= f.label :buyable_from %>
-  <%= f.date_select :buyable_from %>
+  <%= f.date_select :buyable_from, class: 'form-control' %>
 
   <%= f.label :buyable_until %>
-  <%= f.date_select :buyable_until %>
+  <%= f.date_select :buyable_until, class: 'form-control' %>
 
-  <%= f.submit "Create" %>
+  <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>

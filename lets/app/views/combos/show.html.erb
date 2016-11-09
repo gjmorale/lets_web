@@ -1,48 +1,55 @@
 <% provide(:title, @combo.name) %>
-<h1><%= @combo.name %></h1>
-<h2><%= link_to @combo.event.name, @combo.event %></h2>
+<h3><%= @combo.name %></h3>
+<h4><%= link_to @combo.event.name, @combo.event %></h4>
 <p><%= @combo.description %></p>
 <p>Available from 
 	<%= @combo.buyable_from.strftime("%m/%d/%y %I:%M%p") %> to 
 	<%= @combo.buyable_until.strftime("%m/%d/%y %I:%M%p") %>
 </p>
+<p>
+	<%= link_to "$#{@combo.price}", combo_purchases_path(@combo), method: :post,
+                                data: { confirm: "You sure?" }, class: 'btn btn-primary'  %>
+</p>
 
+<h4>Offers:</h4>
 <ul>
 	<%= render @combo.offers %>
 </ul>
 
-<% if logged_in? and is_owner? @combo.event.producer %>
-	<%= form_for [@combo, @offer] do |f| %>
+<div class="row">
+  <div class="col-md-6">
+		<% if logged_in? and is_owner? @combo.event.producer %>
+			<%= form_for [@combo, @offer] do |f| %>
 
-	 	<% @object_with_errors = @offer %>
-		<%= render 'shared/error_messages' %>
+			 	<% @object_with_errors = @offer %>
+				<%= render 'shared/error_messages' %>
 
-	  <%= f.label :price %>
-	  <%= f.number_field :price %>
+			  <%= f.label :price %>
+			  <%= f.number_field :price, class: 'form-control' %>
 
-	  <%= f.label :redeem_start %>
-	  <%= f.datetime_select :redeem_start %>
+			  <%= f.label :redeem_start %>
+			  <%= f.datetime_select :redeem_start, class: 'form-control input-short' %>
 
-	  <%= f.label :redeem_finish %>
-	  <%= f.datetime_select :redeem_finish %>
+			  <%= f.label :redeem_finish %>
+			  <%= f.datetime_select :redeem_finish, class: 'form-control' %>
 
-		<%= f.label :product_id %><br />
-  	<%= f.select :product_id, options_for_select(Product.all.map{|s|[s.name, s.id]}) %>
+				<%= f.label :product_id %><br />
+		  	<%= f.select :product_id, options_for_select(Product.all.map{|s|[s.name, s.id]}), class: 'form-control' %>
 
-	  <%= f.submit "Add" %>
-	<% end %>
-<% end %>
-
-<p>Buy <%= link_to "$#{@combo.price}", combo_purchases_path(@combo), method: :post,
-                                data: { confirm: "You sure?" }  %>
-</p>
-
-<ul>
-	<% unless @errors.nil? %>
-		<% @errors.each do |error| %>
-			<li><%= error %></li>
+			  <%= f.submit "Add", class: "btn btn-primary" %>
+			<% end %>
 		<% end %>
-	<% end %>
-</ul>
+	</div>
+  <div class="col-md-6">
 
-<p>Find me in app/views/combos/show.html.erb</p>
+		<% unless @errors.nil? %>
+			<p>Can't buy this combo:</p>
+			<ul>
+				<% @errors.each do |error| %>
+					<li><%= error %></li>
+				<% end %>
+			</ul>
+		<% end %>
+	</div>
+</div>
+

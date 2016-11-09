@@ -5,16 +5,16 @@
 	<%= render 'shared/error_messages' %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, class: 'form-control' %>
 
   <%= f.label :min_age %>
-  <%= f.number_field :min_age %>
+  <%= f.number_field :min_age, class: 'form-control' %>
 
   <%= f.label :product_type %>
-  <%= f.number_field :product_type %>
+  <%= f.number_field :product_type, class: 'form-control' %>
 
-  <%= f.submit "Update" %>
+  <%= f.submit "Update", class: 'btn btn-primary' %>
 <% end %>

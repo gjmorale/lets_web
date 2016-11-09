@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     self.gender == 1 ? "Female" : "Male"
   end
 
+  def birthday
+    self.birth_date.strftime("%m/%d/%Y") 
+  end
+
   def full_name
     self.first_name + " " + self.last_name
   end
