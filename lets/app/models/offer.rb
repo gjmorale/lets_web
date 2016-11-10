@@ -18,7 +18,7 @@ class Offer < ApplicationRecord
     check! user
     Purchase.generate(user, self)
     event = self.combo.event
-    Admission.get_or_new(user, event)
+    admission = Admission.get_or_new(user, event)
     admission.actual_level = provided_level if Level.compare(admission.actual_level, provided_level)
     admission.save!
   end
