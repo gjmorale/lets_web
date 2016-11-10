@@ -10,4 +10,9 @@ class Admission < ApplicationRecord
 		Level.compare(self.actual_level, self.guest_level) ? self.guest_level : self.actual_level
 	end
 
+	def Admission.get_or_new(user, event)
+    admission = Admission.new(user: user, event: event) unless admission = Admission.where(user: user, event: event).take
+    admission
+	end
+
 end

@@ -57,7 +57,7 @@ class Combo < ApplicationRecord
 
   def check_levels user
   	max_required = nil
-  	admission = Admission.find_by(user: user, event: self.event)
+  	admission = Admission.get_or_new(user, self.event)
   	max_provided = admission.access_level
   	self.offers.each do |offer|
   		provided_level = offer.provided_level
