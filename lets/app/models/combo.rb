@@ -72,6 +72,7 @@ class Combo < ApplicationRecord
 
   	def check user
   		reset_errors
+	  	set_error "Invalid user" if user.nil?
 	  	set_error "This item is out of stock" unless stock_validation
 	  	set_error "Item not available for #{user.public_gender.pluralize}" unless gender_validation user.gender
 	  	set_error "Needs to be older than #{self.min_age} years old" unless min_age_validation user.age
@@ -87,6 +88,7 @@ class Combo < ApplicationRecord
   	end
 
   	def check! user
+	  	set_exception "Invalid user" if user.nil?
 	  	set_exception "This item is out of stock" unless stock_validation
 	  	set_exception "Item not available for #{user.public_gender.pluralize}" unless gender_validation user.gender
 	  	set_exception "Needs to be older than #{self.min_age} years old" unless min_age_validation user.age
