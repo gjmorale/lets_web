@@ -17,6 +17,7 @@ class PurchasesController < ApplicationController
 		end
 	rescue => e
 		flash[:danger] = e.message
+		redirect_to @combo
 	end
 	end
 
