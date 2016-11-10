@@ -11,7 +11,7 @@ class Admission < ApplicationRecord
 	end
 
 	def Admission.get_or_new(user, event)
-    admission = Admission.new(user: user, event: event) unless admission = Admission.where(user: user, event: event).take
+    admission = Admission.new(user: user, event: event, status: 0) unless admission = Admission.where(user: user, event: event).take
     admission
 	end
 
