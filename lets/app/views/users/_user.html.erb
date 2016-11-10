@@ -3,7 +3,7 @@
   <% if current_account.admin? && !current_user?(user) %>
     | <%= link_to "Delete", user.account, method: :delete,
                                   data: { confirm: "You sure?" } %>
-  	<% if user.account.admin? %>
+  	<% unless user.account.admin? %>
 	    | <%= link_to "Make Admin", admin_user_path(user), method: :post,
 	                                  data: { confirm: "You sure?" } %>
     <% else %>

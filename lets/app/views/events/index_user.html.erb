@@ -1,9 +1,7 @@
 <% provide(:title, "#{@user.first_name}'s events") %>
-<h1><%= @user.first_name %>'s events</h1>
+<h3><%= @user.first_name %>'s events</h3>
 
 <ul>
   <%= render @events %>
 </ul>
-
-<p>Find me in app/views/events/index_user.html.erb</p>
 

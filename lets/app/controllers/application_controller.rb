@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
+  include ProdOwnersHelper
 
 
   protected
@@ -14,8 +15,10 @@ class ApplicationController < ActionController::Base
     end
 
   	def is_admin
-      flash[:danger] = "Requires administrative privileges"
-      redirect_to root_url unless current_account.admin?
+      unless current_account.admin?
+        flash[:danger] = "Requires administrative privileges"
+        redirect_to root_url 
+      end
   	end
 
     def account_is_owner? producer
@@ -23,10 +26,5 @@ class ApplicationController < ActionController::Base
         flash[:danger] = "You don't have permission"
         redirect_to root_url 
       end
-    end
-
-    #Duplicated from pro_owners_helper for strage reasons
-    def is_owner?(producer)
-      producer.nil? ? false : producer.owners.include?(current_account) 
     end
 end

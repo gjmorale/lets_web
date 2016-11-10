@@ -3,7 +3,6 @@ class PurchasesController < ApplicationController
   before_action :user_is_owner, only: [:show, :index, :destroy]
 
 	def create
-	begin 
 		@combo = Combo.find(params[:combo_id])
 		@user = current_user
 		if @combo.buy @user
@@ -15,10 +14,6 @@ class PurchasesController < ApplicationController
 			flash[:danger] = "Couldn't buy product"
 			render 'combos/show'
 		end
-	rescue => e
-		flash[:danger] = e.message
-		redirect_to @combo
-	end
 	end
 
 	def destroy
