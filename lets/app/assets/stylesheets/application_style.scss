@@ -181,3 +181,12 @@ h3, h4 {
 	color: white;
 }
 
+#logo-img{
+	position: absolute;
+	display: inline;
+	height: 120px;
+	clip: rect(20px,300px,85px,0px);
+	left: 100px;
+	top: -35px;
+}
+
