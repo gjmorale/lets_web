@@ -29,6 +29,13 @@ class ProducersController < ApplicationController
   end
 
   def update
+    @producer = Producer.find(params[:id])
+    if @producer.update_attributes(producer_params)
+      flash[:success] = "Producer updated"
+      redirect_to @producer
+    else
+      render 'edit'
+    end
   end
 
   private

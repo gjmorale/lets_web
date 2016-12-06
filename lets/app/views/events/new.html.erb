@@ -20,10 +20,10 @@
   <%= f.number_field :max_age, class: 'form-control' %>
 
   <%= f.label :open_date %>
-  <%= f.date_select :open_date, class: 'form-control' %>
+  <%= f.datetime_select :open_date, class: 'form-control' %>
 
   <%= f.label :close_date %>
-  <%= f.date_select :close_date, class: 'form-control' %>
+  <%= f.datetime_select :close_date, class: 'form-control' %>
 
   <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
