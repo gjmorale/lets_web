@@ -1,8 +1,7 @@
 <% provide(:title, @event.name) %>
 <h3><%= @event.name %></h3>
 <h4><%= link_to @event.producer.fantasy_name, @event.producer %></h4>
-<p><%= @event.description %></p>
-<p>
+<p class="card"><%= @event.description %>
 	capacity: <%= @event.capacity %> |
 	ages: <%= @event.min_age %> to
 	<%= @event.max_age %> |

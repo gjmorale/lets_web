@@ -1,4 +1,4 @@
-<li>
+<li class="card">
   <%= link_to product.name, product %>
   <% if logged_in? and current_account.admin? %>
     | <%= link_to "delete", product, method: :delete,

@@ -1,8 +1,10 @@
 <% provide(:title, @producer.name) %>
 
-<h1><%= @producer.fantasy_name %></h1>
-<h3><%= @producer.name %></h3>
+<h3><%= @producer.fantasy_name %></h3>
+<div class="card">
+<p><%= @producer.name %></p>
 <p><%= @producer.social_id %></p>
+</div>
 
 <h4><%= link_to "Events", producer_events_path(@producer) %><h4>
 

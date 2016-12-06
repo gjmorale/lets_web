@@ -1,5 +1,5 @@
 <% provide :title, "New Event"%>
-<h1>New Event</h1>
+<h3>New Event</h3>
 <%= form_for [@producer, @event] do |f| %>
  	<% @object_with_errors = @event %>
 	<%= render 'shared/error_messages' %>

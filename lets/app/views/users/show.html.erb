@@ -3,9 +3,10 @@
 <%= @user.first_name %> <%= @user.last_name %>
 </h3>
 <h4><%= @user.social_id %></h4>
+<div class = "card">
 <p><%= @user.public_gender %></p>
 <p>Born <%= @user.birthday %></p>
-
+</div>
 <h4>Producers</h4>
 <ul>
 	<%= render @user.account.producers %>

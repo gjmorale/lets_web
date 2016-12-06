@@ -21,6 +21,7 @@
 
 body {
   padding-top: 60px;
+  background-color: #444;
 }
 
 section {
@@ -87,10 +88,10 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #999;
   color: $gray-light;
   a {
-    color: $gray;
+    color: #bbb;
     &:hover {
       color: $gray-darker;
     }
@@ -143,3 +144,40 @@ input {
     color: $state-danger-text;
   }
 }
+
+/* LETS */
+
+.orange {
+	background-color: orange;
+	border: none;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+	color: white;
+}
+
+.btn {
+	background-color: orange;
+	border: none;
+}
+
+.jumbotron {
+	background-color: white;
+}
+
+.card, form {
+	background-color: white;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+}
+
+ul {
+	list-style: none;
+	padding-left: 0px;
+}
+
+h3, h4 {
+	color: white;
+}
+

@@ -1,10 +1,12 @@
 <% provide(:title, "#{@purchase.buyer.first_name}'s purchase") %>
-<h1>
+<h3>
 <%= @purchase.buyer.full_name %>
-</h1>
-<h2><%= @purchase.offer.product.name %></h2>
+</h3>
+<h4><%= @purchase.offer.product.name %></h4>
+<div class = "card">
 <p><%= @purchase.date %></p>
 <p><%= @purchase.price_paid %></p>
 <p><%= @purchase.status %></p>
+</div>
 
  

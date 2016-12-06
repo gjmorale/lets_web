@@ -1,5 +1,5 @@
-, class: 'form-control'<% provide :title, "New Combo"%>
-<h1><%= @event.name %>'s new combo</h1>
+<% provide :title, "New Combo"%>
+<h3><%= @event.name %>'s new combo</h3>
 <%= form_for [@event, @combo] do |f| %>
  	<% @object_with_errors = @combo %>
 	<%= render 'shared/error_messages' %>

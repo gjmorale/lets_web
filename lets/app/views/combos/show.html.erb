@@ -1,6 +1,7 @@
 <% provide(:title, @combo.name) %>
 <h3><%= @combo.name %></h3>
 <h4><%= link_to @combo.event.name, @combo.event %></h4>
+<div class = "card">
 <p><%= @combo.description %></p>
 <p>Available from 
 	<%= @combo.buyable_from.strftime("%m/%d/%y %I:%M%p") %> to 
@@ -10,7 +11,7 @@
 	<%= link_to "$#{@combo.price}", combo_purchases_path(@combo), method: :post,
                                 data: { confirm: "You sure?" }, class: 'btn btn-primary'  %>
 </p>
-
+</div>
 <h4>Offers:</h4>
 <ul>
 	<%= render @combo.offers %>
